@@ -1,0 +1,81 @@
+\iffalse
+\afterpage{%
+\clearpage% Flush earlier floats (otherwise order might not be correct)
+\begin{landscape}% Landscape page
+%\begin{adjustbox}{angle=90}
+\begin{table}[!ht] %sidwaystable
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{table}{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
+    \hline
+        Metrik ID & Anforderungs ID & Person(en) & Metrikart & Beschreibung & Nutzungserklärung & Kontext & Wichtigkeitsgrad (maximal) \\ \hline
+        1 & 1, (2), 14, 19, 49 & A, B, C & Servermetriken & alle Metriken zur Überwachung der physischen Eigenschaften eines Servers: CPU, RAM, … & Performanceanalyse & alle Umgebungen & 5 \\ \hline
+        2 & 6 & A & Anwendungsmetriken & Statusinformationen zu Startzeit und Anwendungsversion & Erkennung von Versionsänderungen und Laufzeit & Entwicklungsumgebung intern & 4 \\ \hline
+        3 & 2, 3, 4, 20, 50 & A, B, C & Anwendungsmetriken & alle Metriken zur Überwachung der Anwendung, welche den edoc.server darstellen: Threads, Garbage Collection, Heap Space, Java Version, … & Performanceanalyse, Engpasserkennung im Produktivsystem, Systemüberblick und Speicherleckerkennung & alle Umgebungen & 5 \\ \hline
+        4 & 8, 39, 42, 48 & A, C, H & Anwendungsmetrik & Der Status der jeweiligen Dokumentklassenkonnektoren (aktiv/inaktiv) & Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        5 & 5, 39, 42, 48 & A, C, H & Anwendungsmetrik & Der Status der jeweiligen Dokumentklassen (aktiv/inaktiv) & Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        6 & 7 & A & fachliche Metriken & Übersicht über alle Aufträge des edoc.servers, Status: Angenommen, Fehlerhaft, Archiviert, Geparkt, Laufend, Ausgeführt & ~ & Entwicklungsumgebung intern & 4 \\ \hline
+        7 & 10 & A & Anwendungsmetrik & Anzahl der HTTP-Anfragen je nach Pfad und Responsecodes & Restschnittstellenüberwachung & Entwicklungsumgebung & 3 \\ \hline
+        8 & 5 & A & Anwendungsmetrik & Anzahl der Threads pro Dokumentklasse & Statusüberwachung & Entwicklungsumgebung & 4 \\ \hline
+        9 & 5, 16, 23, 45 & A, B, C, G & fachliche Metrik & Anzahl der Aufträge, Status: Eingang & Performanceanalyse, Ressourcenmanagement & alle Umgebungen & 4 \\ \hline
+        10 & 5, 46 & A, C & fachliche Metrik & Anzahl der Aufträge, Status: In Arbeit & Performanceanalyse & alle Umgebungen & 4 \\ \hline
+        11 & 5, 11, 12, 22, 30, 32, 34, 38, 41, 47 & A, B, C, E, F, H & fachliche Metrik & Anzahl der Aufträge, Status: Ausgeführt & Performanceanalyse, Ressourcenmanagement & alle Umgebungen & 5 \\ \hline
+        12 & 21 & B & fachliche Metrik & Anzahl der angebotenen Dokumentklassen & Statusüberwachung & Produktivumgebung BGW & 1 \\ \hline
+        13 & 9 & A & Anwendungsmetrik & Anzahl der Fehler pro Dokumentklassenkonnektor & Statusüberwachung & Entwicklungsumgebung intern & 2 \\ \hline
+        14 & 5, 18, 24, 29, 31, 33, 35, 40 & A, B, C, D, G, E, H & fachliche Metriken & Anzahl der Aufträge, Status: Fehlerhaft & Fehleranalyse, Statusüberwachung,  & alle Umgebungen & 5 \\ \hline
+        15 & 10, 25, 51 & A, C, D & Anwendungsmetrik & Anzahl der HTTP-Anfragen & Performanceanalyse von Dokumentanfragen & alle Umgebungen & 3 \\ \hline
+        16 & 10, 28 & A, D & Anwendungsmetrik & Anzahl der erfolglosen HTTP-Anfragen & Fehleranalyse, Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        17 & 52 & C & Anwendungsmetrik & Dauer der jeweiligen HTTP-Anfragen & Performanceanalyse von Dokumentanfragen & alle Umgebungen & 3 \\ \hline
+        18 & 26, 27 & D & fachliche Metrik & Anzahl der unterschiedlichen Nutzer pro Bezirksverwaltung, die bestimmte HTTP-Anfragen stellen & Performanceanalyse von Dokumentanfragen & Produktivumgebung BGW & 3 \\ \hline
+    \end{table}
+    }
+    \caption{Metriken nach Gruppierung der Ersterhebung aus \protect\hyperlink{Anhang 1}{anhang1}}
+    \label{tab:metrikenNachGruppierung}
+\end{table}
+%\end{adjustbox}
+
+\end{landscape}
+\clearpage% Flush page
+}
+
+\begin{landscape} % Rotate the pages
+\setlength\LTleft{0pt} % Set left margin for longtable
+\setlength\LTright{0pt} % Set right margin for longtable
+    \begin{longtable}{|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
+    \hline
+    Metrik ID & Anforderungs ID & Person(en) & Metrikart & Beschreibung & Nutzungserklärung & Kontext & Wichtigkeitsgrad (maximal) \\ \hline
+    \endfirsthead
+    \hline
+    Metrik ID & Anforderungs ID & Person(en) & Metrikart & Beschreibung & Nutzungserklärung & Kontext & Wichtigkeitsgrad (maximal) \\ \hline
+    \endhead
+    \hline
+    \endfoot
+    \hline
+    \endlastfoot
+    \hline
+        Metrik ID & Anforderungs ID & Person(en) & Metrikart & Beschreibung & Nutzungserklärung & Kontext & Wichtigkeitsgrad (maximal) \\ \hline
+        1 & 1, (2), 14, 19, 49 & A, B, C & Servermetriken & alle Metriken zur Überwachung der physischen Eigenschaften eines Servers: CPU, RAM, … & Performanceanalyse & alle Umgebungen & 5 \\ \hline
+        2 & 6 & A & Anwendungsmetriken & Statusinformationen zu Startzeit und Anwendungsversion & Erkennung von Versionsänderungen und Laufzeit & Entwicklungsumgebung intern & 4 \\ \hline
+        3 & 2, 3, 4, 20, 50 & A, B, C & Anwendungsmetriken & alle Metriken zur Überwachung der Anwendung, welche den edoc.server darstellen: Threads, Garbage Collection, Heap Space, Java Version, … & Performanceanalyse, Engpasserkennung im Produktivsystem, Systemüberblick und Speicherleckerkennung & alle Umgebungen & 5 \\ \hline
+        4 & 8, 39, 42, 48 & A, C, H & Anwendungsmetrik & Der Status der jeweiligen Dokumentklassenkonnektoren (aktiv/inaktiv) & Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        5 & 5, 39, 42, 48 & A, C, H & Anwendungsmetrik & Der Status der jeweiligen Dokumentklassen (aktiv/inaktiv) & Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        6 & 7 & A & fachliche Metriken & Übersicht über alle Aufträge des edoc.servers, Status: Angenommen, Fehlerhaft, Archiviert, Geparkt, Laufend, Ausgeführt & ~ & Entwicklungsumgebung intern & 4 \\ \hline
+        7 & 10 & A & Anwendungsmetrik & Anzahl der HTTP-Anfragen je nach Pfad und Responsecodes & Restschnittstellenüberwachung & Entwicklungsumgebung & 3 \\ \hline
+        8 & 5 & A & Anwendungsmetrik & Anzahl der Threads pro Dokumentklasse & Statusüberwachung & Entwicklungsumgebung & 4 \\ \hline
+        9 & 5, 16, 23, 45 & A, B, C, G & fachliche Metrik & Anzahl der Aufträge, Status: Eingang & Performanceanalyse, Ressourcenmanagement & alle Umgebungen & 4 \\ \hline
+        10 & 5, 46 & A, C & fachliche Metrik & Anzahl der Aufträge, Status: In Arbeit & Performanceanalyse & alle Umgebungen & 4 \\ \hline
+        11 & 5, 11, 12, 22, 30, 32, 34, 38, 41, 47 & A, B, C, E, F, H & fachliche Metrik & Anzahl der Aufträge, Status: Ausgeführt & Performanceanalyse, Ressourcenmanagement & alle Umgebungen & 5 \\ \hline
+        12 & 21 & B & fachliche Metrik & Anzahl der angebotenen Dokumentklassen & Statusüberwachung & Produktivumgebung BGW & 1 \\ \hline
+        13 & 9 & A & Anwendungsmetrik & Anzahl der Fehler pro Dokumentklassenkonnektor & Statusüberwachung & Entwicklungsumgebung intern & 2 \\ \hline
+        14 & 5, 18, 24, 29, 31, 33, 35, 40 & A, B, C, D, G, E, H & fachliche Metriken & Anzahl der Aufträge, Status: Fehlerhaft & Fehleranalyse, Statusüberwachung,  & alle Umgebungen & 5 \\ \hline
+        15 & 10, 25, 51 & A, C, D & Anwendungsmetrik & Anzahl der HTTP-Anfragen & Performanceanalyse von Dokumentanfragen & alle Umgebungen & 3 \\ \hline
+        16 & 10, 28 & A, D & Anwendungsmetrik & Anzahl der erfolglosen HTTP-Anfragen & Fehleranalyse, Statusüberwachung & alle Umgebungen & 5 \\ \hline
+        17 & 52 & C & Anwendungsmetrik & Dauer der jeweiligen HTTP-Anfragen & Performanceanalyse von Dokumentanfragen & alle Umgebungen & 3 \\ \hline
+        18 & 26, 27 & D & fachliche Metrik & Anzahl der unterschiedlichen Nutzer pro Bezirksverwaltung, die bestimmte HTTP-Anfragen stellen & Performanceanalyse von Dokumentanfragen & Produktivumgebung BGW & 3 \\ \hline
+    \caption{Metriken nach Gruppierung der Ersterhebung aus \protect\hyperlink{Anhang 1}{anhang1}}
+    \label{tab:metrikenNachGruppierung}
+    \end{longtable}
+
+\end{landscape}
+
+\fi

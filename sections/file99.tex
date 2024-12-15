@@ -1,0 +1,126 @@
+\iffalse
+
+\begin{table}[!ht]
+    \centering
+    \caption{Zugangspunkte von mit \anf{mogena.uv} entwickelten Webapplikationen}
+    \label{zugangspunkteTabelle}
+    \resizebox{0.8\columnwidth}{!}{\begin{tabular}{|L{3cm}|L{12cm}|}
+    \hline
+        Name & Beschreibung \\ \hline
+        HTTPS Port & Alle Anwender haben die Möglichkeit die Webapplikation unter dem HTTPS Port zu erreichen. \\ \hline
+        Login Seite & Die Seite, welche alle Anwender zuerst angezeigt bekommen. Alle Aufrufe werden auf diese Seite umgeleitet, sofern keine Anmeldung stattgefunden hat.\\ \hline
+        iFrame-einbettende Seite & Eine modellierte Seite, welche die Implementation des iFrames beinhaltet. \\ \hline
+        Vaadin Frontend Engine & Der Browser-seitige Client von Applikationen, welche mit Vaadin erstellt wurden.\\ \hline
+        DOM Listener auf Events & Alle mit Vaadin entwickelten Applikationen verwenden DOM Events, um Updates für die Komponenten zu senden, welche auf der Webseite verwendet werden. \\ \hline
+        Nachrichten zischen den iFrame und dem Window & Es besteht die Möglichkeit Nachrichten, welche zwischen den Fenstern geschickt werden abzufangen und einzusehen. \\ \hline
+    \end{tabular}}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Liste der Bedrohungen nach dem Drei-Schichten-Modell mit Erweiterungen um Eigenschaften}
+    \label{bedrohungenTabelle}
+    \resizebox{\columnwidth}{!}{\begin{tabular}{|L{1cm}|L{5cm}|L{5cm}|L{5cm}|L{5cm}|}
+    \hline
+        Nr. & Schwachstelle & theoretisches Beispiel & Angriffsklasse & Auswirkung auf Geschäftstätigkeit \\ \hline
+        1 & Injektion von Code (über Events) & Triggern von anderem Verhalten auf der Webseite. Veränderung von Daten ist nicht möglich. & Code Injektion & Verlust der Integrität \\ \hline
+        2 & Verarbeitung von fremden Events durch den Public-Listener & Es ist möglich Daten und Anweisungen über den Listener zu verarbeiten. Unrechtmäßige Veränderungen werden in der Regel abgefangen. & Tampering und Information Disclosure & Verlust der Vertraulichkeit und Verlust der Authentizität \\ \hline
+        3 & Abfangen der unverschlüsselten Kommunikation zwischen den Browsern  & Abfangen einer Nachricht. Verändern des Inhaltes und erneutes Versenden. Noch keine Verschlüsselung und Identifizierung der Datenpakete. & Information Disclosure & Verlust der Vertraulichkeit und Verlust der Zurechenbarkeit \\ \hline
+        4 & Abfangen der unverschlüsselten JSON-Dateien & Aus den JSON-Dateien können Nutzerdaten und sensible Daten entnommen werden.  & Information Disclosure & Verlust der Vertraulichkeit \\ \hline
+        6 & Clickjacking & Die eingebundene Webseite wird auf einer nachgebauten Webseite eingebunden und die Eingaben werden abgehört (ähnlich dem Vorgehen von spear phishing).  & InformationDiscolsure Elevation of privilege & Verlust der Vertraulichkeit \\ \hline
+    \end{tabular}}
+\end{table}
+\noindent
+
+\begin{table}[!ht]
+    \centering
+    \caption{Wahrscheinlichkeitsskala}
+    \label{wahrscheinlichkeitskala}
+    \resizebox{\columnwidth}{!}{\begin{tabular}{|L{4cm}|L{3cm}|L{3cm}|L{3cm}|L{3 cm}|}
+    \hline
+        ITUV Punktwert & 1  & 2 & 3 & 5 \\ \hline
+         & unwahrscheinlich & möglich & wahrscheinlich & sehr wahrscheinlich \\ \hline
+        Annual Rate of Occurance (kurz: ARO) & 1x / 10 Jahre & 1x / Jahr &  1x / Monat &  mehr als 1x / Woche \\\hline
+    \end{tabular}}
+\end{table}
+\noindent
+
+
+\begin{table}[!ht]
+    \centering
+    \caption{Bewertung der Bedrohungen}
+    \label{schaden+wahrscheinlichkeitTabelle}
+    \resizebox{0.7\columnwidth}{!}{\begin{tabular}{|L{1cm}|L{3cm}|L{3cm}|L{3cm}|L{3cm}|}
+    \hline
+        Nr. & Schwachstelle  & Eintrittswahr-scheinlichkeit & potenzieller Schaden & Gesamtwertung \\ \hline
+        1 & Injektion von Code (über Events) & 1 & 1 & 1 \\ \hline
+        2 & Verarbeitung von fremden Events durch den Public-Listener & 1 & 3 & 3 \\ \hline
+        3 & Abfangen der unverschlüsselten Kommunikation zwischen den Browsern  & 5 & 4 & 20 \\ \hline
+        4 & Abfangen der unverschlüsselten JSON-Dateien & 5 & 5 & 25 \\ \hline
+        5 & Clickjacking & 2 & 5 & 10 \\ \hline
+    \end{tabular}}
+\end{table}
+
+
+
+\fullref{aufrufPostMessage}
+\begin{codeBlock}{js}{Aufruf von postMessage im Konnektor}{aufrufPostMessage}
+    this.iframe.contentWindow.postMessage('messagePort', '*', [this.channel.port2]); 
+\end{codeBlock}
+
+\begin{center}
+\captionsetup{type=figure}
+\includegraphics[width=0.7\textwidth]{images/Die-vier-Prinzipien-der-Barrierefreiheit.png}
+\captionof{figure}{Die-vier-Prinzipien-der-Barrierefreiheit \cite[Abbildung 1]{WCAG-Artikel}}
+\label{BF-Prinzipien-Bild}
+\end{center}
+
+\begin{center}
+\captionsetup{type=figure}
+\includegraphics[width=0.9\textwidth]{images/qualitaetssicherung_ituv.png}
+\captionof{figure}{Qualitätssicherungsstrategien der ITUV}
+\label{qualitaetssicherung_ituv}
+\end{center}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.2\textwidth]{images/ELPO-Klassifikation-1.png}
+    \caption{Klassifikation des Dokuments anhand eines Regelbaumes. \protect\\Quelle: eigene Darstellung} % \protect\\ wenn Zeilenumbruch
+    \label{fig:ELPO-Klassifikation}
+\end{figure}
+
+%anpassung levellung 
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+\renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}}
+\renewcommand{\labelenumiv}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.\arabic{enumiv}}
+
+\paragraph{Richtlinien des BITV-Konformitätskonzept der ITUV}
+\label{richtlinien}
+\begin{enumerate}
+    \item Wahrnehmbarkeit
+    \begin{enumerate} 
+        \item Textalternativen: Stellen Sie Textalternativen für alle Nicht-Text-Inhalte zur Verfügung, sodass diese in andere vom Benutzer benötigte Formen geändert werden können, wie zum Beispiel Großschrift, Braille, Symbole oder einfachere Sprache.
+        \item Zeitbasierte Medien: Stellen Sie Alternativen für zeitbasierte Medien zur Verfügung oder fügen Sie Alternativtexte, Untertitel oder Audio-Deskriptionen hinzu.
+        \item Anpassbar: Erstellen Sie Inhalte, die auf verschiedene Arten dargestellt werden können (z.B. einfacheres Layout), ohne dass Informationen oder Struktur verloren gehen.
+        \item Unterscheidbar: Machen Sie es Benutzern leichter, Inhalt zu sehen und zu hören, einschließlich der Trennung von Vorder- und Hintergrund.
+    \end{enumerate}
+    \item Bedienbarkeit
+    \begin{enumerate}
+        \item Per Tastatur zugänglich: Sorgen Sie dafür, dass alle Funktionalitäten per Tastatur zugänglich sind.
+        \item Ausreichend Zeit: Geben Sie den Benutzern ausreichend Zeit, Inhalte zu lesen und zu benutzen.
+        \item Anfälle: Gestalten Sie Inhalte nicht auf Arten, von denen bekannt ist, dass sie zu Anfällen führen.
+        \item Navigierbar: Stellen Sie Mittel zur Verfügung, um Benutzer dabei zu unterstützen zu navigieren, Inhalte zu finden und zu bestimmen, wo sie sich befinden.
+        \item Eingabemodalitäten: Erleichtern Sie Benutzern die Bedienung von Funktionen über unterschiedliche Eingabemöglichkeiten abseits der Tastatur.
+    \end{enumerate}
+    \item Verständlichkeit
+    \begin{enumerate} 
+        \item Lesbar: Machen Sie Inhalt lesbar und verständlich.
+        \item Vorhersehbar: Sorgen Sie dafür, dass Webseiten vorhersehbar aussehen und funktionieren.
+        \item Hilfestellung bei der Eingabe: Helfen Sie den Benutzern dabei, Fehler zu vermeiden und zu korrigieren.
+    \end{enumerate}
+    \item Robustheit
+    \begin{enumerate}
+        \item Kompatibel: Maximieren Sie die Kompatibilität mit aktuellen und zukünftigen Benutzeragenten, einschließlich assistierender Techniken
+    \end{enumerate}
+\end{enumerate}
+
+\fi
