@@ -8,23 +8,19 @@ Deskriptive, prädikative und präskriptive Analysen haben verschiedene Verwendu
 
 \subsection{Einführung in die Regression}
 \label{regression}
-
-
-\cite{frick2021data}
-
-
-
-
+Die lineare Regression ist eines der am häufigsten eingesetzten Werkzeuge in der Datenanalyse und im Rahmen der fundamentalen Analysemethoden deckt sie den Bereich Prognose ab \cite{frick2021data}.  \\\\
+Regressionsanalysen modellieren Zusammenhänge zwischen unabhängigen und abhängigen Variablen. Die unabhängigen Variablen werden als Eingabe in das Modell eingegeben und die abhängige Variable soll prognostiziert werden. Die lineare Regression setzt voraus, dass ein linearer Zusammenhang zwischen den Variablen besteht. Die lineare Regression kann als Formel ausgedrückt werden in der \autoref{eq:simpleregression} \cite{frick2021data}. 
 \begin{equation}
-Y_t = \beta_0 + \beta_1 X_t + \epsilon_t \tag{3.1}
+Y = \beta_0 + \beta_1 X + \epsilon \tag{3.1}
 \label{eq:simpleregression}
 \end{equation}
-Im \ac{MMM} können die abhängigen Variablen Preis, digitale Ausgaben, Zeitungs- und Magazinkosten, TV-Kosten etc. sein und die Ausgabe-Variable kann Nachfrage, Marktanteil und Gewinn sein \cite{akinkunmi2018data}.
+Sei \verb|X| eine unabhängige Variable und \verb|Y| eine abhängige Variable. Durch diese Gleichung wird eine Regressionsgerade gezogen. Durch die Regressionsanalyse sollen der Steigungsparameter $\beta_1$ und der Achsenabschnitt $\beta_0$ gefunden werden. Die in das Diagramm eingetragenen Punkte heißen Beobachtungen. Das Modell kann genutzt werden, den \verb|y'_i|-Wert für die jeweiligen \verb|x_i|-Werte vorherzusagen und mit dem tatsächlichen \verb|y_i| zu vergleichen. Da in der Regel kein vollständiger linearer Zusammenhang zwischen den Variablen vorliegt, besteht ein Unterschied zwischen manchen Beobachtungen und der Regressionsgerade. Der vertikale Abstand zwischen einer Beobachtung und der Regressionsgerade wird Residuum genannt. Das Residuum wird in der Gleichung durch den Fehlerterm $\epsilon$ (\anf{Epsilon}) ausgedrückt \cite{frick2021data}.  \\\\
+Wenn mehrere unabhängige Variablen in das Modell eingegeben werden, ist das ein \ac{MLR}. Die Formel wird erweitert für mehr \verb|x|-Werte. In der \autoref{eq:multilinear} wird die \ac{MLR} beschrieben \cite{frick2021data}. 
 \begin{equation}
-Y_t = \beta_0 + \beta_1 X_{1t} + \beta_2 X_{2t} + \dots + \beta_k X_{kt} + \varepsilon_t, \tag{3.2}
+Y = \beta_0 + \beta_1 X_{1} + \beta_2 X_{2} + \dots + \beta_p X_{p} + \varepsilon, \tag{3.2}
 \label{eq:multilinear}
 \end{equation}
-
+\verb|p| bezeichnet dabei die Anzahl der unabhängigen Variablen. Das \ac{MLR}-Modell ähnelt dem der linearen Regression und unterstellt ebenfalls einen linearen Zusammenhang \cite{frick2021data}. Im \ac{MMM} können die abhängigen Variablen Preis, digitale Ausgaben, Zeitungs- und Magazinkosten, TV-Kosten etc. sein und die Ausgabe-Variable kann Nachfrage, Marktanteil und Gewinn sein \cite{akinkunmi2018data}.
 
 \subsection{Huber-Regression}
 \label{huberregression}
