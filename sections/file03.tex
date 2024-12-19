@@ -2,9 +2,28 @@
 \section{Theoretische Grundlagen (ca. 5 Seiten/10)}
 \subsection{Deskriptive Analyse}
 \label{deskriptiveanalyse}
-Die deskriptive Analyse stellt einen wichtigen Schritt im Prozess der Datenwissenschaft im Marketing dar, da sie ein umfassendes Verständnis von historischen Daten vermittelt. Sie ermöglicht es den Marktern, wesentliche Muster, Trends und Beziehungen in den Daten zusammenzufassen, zu visualisieren und zu interpretieren. Somit bildet die deskriptive Analyse Grundlagen für fortgeschrittenere Analysen wie prädiktive und präskriptive Analysen. Die deskriptive Analyse ist essenziell, um Kundenverhalten und -präferenzen zu verstehen, Markttrends und Konkurrenzdynamik zu identifizieren, Marketingeffekte zu evaluieren und Entscheidungsfindung im datengesteurten Marketing zu unterstützen\cite{brown2024mastering}. \\\\
-Deskriptive, prädikative und präskriptve Analysen haben verschiedene Verwendungszwecken und Methoden. Die deskriptive Analyse benutzt die Statistik, Datenaggregation und Visualisierung um das vergangangende Verhalten zusammenzufassen und zu verstehen. Sie wird verwendet in Markttrendanalysen, Kundensegmentierung und Analysen der Verkaufsleistung mithilfe der Reports, Dashboards und Charts. Basierend auf historische Daten wird die prädiktive Analyse verwendet, um den zukünftigen Verlauf vorherzusagen. Dabei entstehen Vorhersagen und Wahrscheinlichkeitswert auf Grundlagen von Regressionen, maschinellem Lernen und Zeitreihenanalysen. Sie wird verwendet für die Vorhersage der Kundenabwanderung und Absatzprognose. Zum Schluss wird die präskriptive Analyse verwendet, um Maßnahmen für die Zukunft zu empfehlen. Dabei werden Optimierung, Simulation und Entscheidungsbaum angewandt, um Empfehlungen und Entscheidungsmodelle zu erzeugen. Diese Analyse wird verwendet, um die Preisoptimierung, Kampagnenausrichtung und Bestandsmanagement zu unterstützen. Die deskriptive Analyse hat einen breiteren Analysenspektrum und ergänzt andere Analysen in effektiven Marketingstrategien\cite[S. 51 ff]{brown2024mastering}. 
+Die deskriptive Analyse stellt einen wichtigen Schritt im Prozess der Datenwissenschaft im Marketing dar, da sie ein umfassendes Verständnis von historischen Daten vermittelt. Sie ermöglicht es den Marketern, wesentliche Muster, Trends und Beziehungen in den Daten zusammenzufassen, zu visualisieren und zu interpretieren. Somit bildet die deskriptive Analyse Grundlagen für fortgeschrittenere Analysen wie prädiktive und präskriptive Analysen. Die deskriptive Analyse ist essenziell, um Kundenverhalten und -präferenzen zu verstehen, Markttrends und Konkurrenzdynamik zu identifizieren, Marketingeffekte zu evaluieren und Entscheidungsfindung im datengesteuerten Marketing zu unterstützen\cite{brown2024mastering}. \\\\
+Deskriptive, prädikative und präskriptive Analysen haben verschiedene Verwendungszwecke und Methoden. Die deskriptive Analyse benutzt die Statistik, Datenaggregation und Visualisierung, um das vergangene Verhalten zusammenzufassen und zu verstehen. Sie wird verwendet in Markttrendanalysen, Kundensegmentierung und Analysen der Verkaufsleistung mithilfe der Reports, Dashboards und Charts. Basierend auf historischen Daten wird die prädiktive Analyse verwendet, um den zukünftigen Verlauf vorherzusagen. Dabei entstehen Vorhersagen und Wahrscheinlichkeitswerte auf Grundlagen von Regressionen, maschinellem Lernen und Zeitreihenanalysen. Sie wird verwendet für die Vorhersage der Kundenabwanderung und Absatzprognose. Zum Schluss wird die präskriptive Analyse verwendet, um Maßnahmen für die Zukunft zu empfehlen. Dabei werden Optimierung, Simulation und Entscheidungsbaum angewandt, um Empfehlungen und Entscheidungsmodelle zu erzeugen. Diese Analyse wird verwendet, um die Preisoptimierung, Kampagnenausrichtung und das Bestandsmanagement zu unterstützen. Die deskriptive Analyse hat ein breiteres Analysenspektrum und ergänzt andere Analysen in effektiven Marketingstrategien\cite[S. 51 ff]{brown2024mastering}. 
 
+
+\subsection{Einführung in die Regression}
+\label{regression}
+
+
+\cite{frick2021data}
+
+
+
+
+\begin{equation}
+Y_t = \beta_0 + \beta_1 X_t + \epsilon_t \tag{3.1}
+\label{eq:simpleregression}
+\end{equation}
+Im \ac{MMM} können die abhängigen Variablen Preis, digitale Ausgaben, Zeitungs- und Magazinkosten, TV-Kosten etc. sein und die Ausgabe-Variable kann Nachfrage, Marktanteil und Gewinn sein \cite{akinkunmi2018data}.
+\begin{equation}
+Y_t = \beta_0 + \beta_1 X_{1t} + \beta_2 X_{2t} + \dots + \beta_k X_{kt} + \varepsilon_t, \tag{3.2}
+\label{eq:multilinear}
+\end{equation}
 
 
 \subsection{Huber-Regression}
@@ -15,6 +34,6 @@ Erkläre die Huber-Regression als statistische Methode und ihre Anwendung im Mar
 Diskutiere, warum diese Methode für die Analyse von Media ROAS geeignet ist.
 Füge ein einfaches Beispiel oder eine Fallstudie hinzu, um die Anwendung zu veranschaulichen.
 
-bonprix setzt bereits die Huber-Regression im Marketing-Mix-Modell ein. Die Huber-Loss-Methode ist eine Erweiterung von OLS (Engl. \anf{Ordinary Least Squares}), eine Regressionsmethode. Die Huber-Loss-Methode minimiert den Einfluss von Ausreißern, indem sie abhängig von der Größe der Residuen eine von zwei Funktionen verwendet, um eine robuste Regressionslinie zu berechnen\cite{huberloss}. \\\\
-Seit 2020 werden die Einflüsse der Faktoren wie Online-Marketing, Katalog, Media, Mail, Rabatt etc. mit der Huber-Loss-Methode in Prozent ausgerechnet. Die Rechnung erfolgt in einem Zeitraum von zwei Jahren. Media hat einen kleinen Anteil von 0,5\% bis 1,6\% in dem Modell, und der jeweilige Anteil seiner Unterkanäle wurde noch nicht berechnet.
+bonprix setzt bereits die Huber-Regression im Marketing-Mix-Modell ein. Die Huber-Loss-Methode ist eine Erweiterung von OLS (Engl. \anf{Ordinary Least Squares}), einer Regressionsmethode. Die Huber-Loss-Methode minimiert den Einfluss von Ausreißern, indem sie abhängig von der Größe der Residuen eine von zwei Funktionen verwendet, um eine robuste Regressionslinie zu berechnen \cite{huberloss}. \\\\
+Seit 2020 werden die Einflüsse der Faktoren wie Online-Marketing, Katalog, Media, Mail, Rabatt etc. mit der Huber-Loss-Methode in Prozent ausgerechnet. Die Rechnung erfolgt in einem Zeitraum von zwei Jahren. Media hat einen kleinen Anteil von 0,5 \% bis 1,6 \% in dem Modell, und der jeweilige Anteil seiner Unterkanäle wurde noch nicht berechnet.
 \fi
