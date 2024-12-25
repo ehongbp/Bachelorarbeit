@@ -111,10 +111,7 @@
     \colorbox{yellow}{\textcolor{red}{Cite Notwendig #1}}%
 }
 
-\newcommand{\todo}[1]{
-    \textcolor{red}{TODO: #1}%
-    \@latex@warning{TODO: #1! Needs to be done}%
-}
+
 
 \newcommand{\anf}[1]{\glqq #1\grqq{}}
 \newcommand{\anfo}[1]{\glqq #1\grqq}
