@@ -123,12 +123,3 @@ Traditionelle Schätzmethoden, wie das arithmetische Mittel, summieren die Abwei
 \end{equation}
 Die Huber-Loss-Funktion ist für kleine \verb|x|-Werte quadratisch und für große \verb|x|-Werte linear. Der Parameter $\alpha$ steuert die Mischung zwischen linearer und quadratischer Bestrafung. Least Squares und \ac{LAD} können als zwei Extremfälle der Huber-Loss-Funktion betrachtet werden. Abweichend vom traditionellen Huber-Schätzer konvergiert der $\alpha$ gegen 0, um Verzerrungen bei der Schätzung in der mittleren Regressionsfunktion zu reduzieren, wenn die bedingte Verteilung nicht symmetrisch ist. Allerdings darf $\alpha$ nicht zu schnell sinken, um die Robustheit zu erhalten \cite{indirekthuber}.   
  
-
-\iffalse
-Erkläre die Huber-Regression als statistische Methode und ihre Anwendung im Marketing.
-Diskutiere, warum diese Methode für die Analyse von Media ROAS geeignet ist.
-Füge ein einfaches Beispiel oder eine Fallstudie hinzu, um die Anwendung zu veranschaulichen.
-
-bonprix setzt bereits die Huber-Regression im Marketing-Mix-Modell ein. Die Huber-Loss-Methode ist eine Erweiterung von OLS (Engl. \anf{Ordinary Least Squares}), einer Regressionsmethode. Die Huber-Loss-Methode minimiert den Einfluss von Ausreißern, indem sie abhängig von der Größe der Residuen eine von zwei Funktionen verwendet, um eine robuste Regressionslinie zu berechnen \cite{huberloss}. \\\\
-Seit 2020 werden die Einflüsse der Faktoren wie Online-Marketing, Katalog, Media, Mail, Rabatt etc. mit der Huber-Loss-Methode in Prozent ausgerechnet. Die Rechnung erfolgt in einem Zeitraum von zwei Jahren. Media hat einen kleinen Anteil von 0,5 \% bis 1,6 \% in dem Modell, und der jeweilige Anteil seiner Unterkanäle wurde noch nicht berechnet.
-\fi
