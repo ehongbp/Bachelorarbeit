@@ -15,13 +15,28 @@
 \usepackage{outlines}
 \usepackage{todonotes}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{ 
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    frame=single, 
+    breaklines=true,
+    showstringspaces=false
+}
+
 \numberwithin{equation}{subsection}
 
 %%% --- The following two lines are what needs to be added --- %%%
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
 \addbibresource{quellen.bib}
-
+\setlength {\marginparwidth }{2cm} 
 \begin{document}
 \hspace{3cm}
 %eigenes deckblatt
@@ -36,27 +51,37 @@
 \vspace*{\fill}
 
 
-\noindent Vorgelegt von:\\
+\noindent 
 Enxi Hong \\
-Zeisigring \\
-24568 Kaltenkirchen\\
 E-Mail: enxi.hong@nordakademie.de\\
-\\
 Matrikelnummer: 11952\\
-Jahrgang: 2021\\
+Zenturie: A21a\\\\
 Studiengang: Angewandte Informatik\\
-Datum: \today\\
-Betreuender Dozent: Michael Fretschner\\
+Gutachter: Prof. Dr. Michael Fretschner\\
+Co-Gutachter: Prof. Dr. Jörg Richard\\
+Betrieblicher Betreuer: Tasmin Krugmann\\\\
+Datum: \today
 
 \newpage
 
 %Seitenzahlen auf Römisch
 \pagenumbering{Roman}
-
-%Auskommentiert, weil expose
-\iffalse
-\includepdf{common/Transferleistung_Deckblatt_05_flattend}
-\fi
+\newpage
+\hspace{2cm}\\
+\textbf{\Large Eidesstattliche Erklärung}\\\\
+Mit meiner Unterschrift versichere ich, dass ich die hier vorliegende Arbeit 
+selbständig, ohne fremde Hilfe und nur mit den angegebenen Hilfsmitteln verfasst 
+habe und meine Angaben zu den verwendeten Quellen der Wahrheit entsprechen und 
+vollständig sind. Alle Quellen, aus denen ich wörtlich oder sinngemäß übernommen 
+habe, habe ich als solche gekennzeichnet.\\\\
+Darüber hinaus versichere ich, dass ich sämtliche Teile der vorliegenden Arbeit, die 
+unter Zuhilfenahme künstlicher Intelligenz (KI) generiert wurden, als solche gekennzeichnet habe und deren Entstehung in einer beigefügten Prozessdokumentation 
+nachgewiesen habe. \\\\
+Ich habe zur Kenntnis genommen, dass zuwiderlaufendes Verhalten als Täuschungsversuch gewertet wird und zu den in der geltenden Prüfungsverfahrensordnung 
+genannten Konsequenzen führen wird.\\\\
+ \\
+Datum:\hspace{1cm}\today\\\\
+Unterschrift:
 
 
 \newpage
