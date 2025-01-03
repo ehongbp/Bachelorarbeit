@@ -1,27 +1,53 @@
 \newpage
 \section{Umsetzung (ca. 10 Seiten)}
-Nachdem die theoretischen Grundlagen im letzten Kapitel vorgestellt wurden, wird in diesem Kapitel die Umsetzung beschrieben. Dieses Kapitel wird nach einem geordneten Vorgehen strukturiert. Zuerst werden verfügbare Daten vorgestellt, analysiert und sortiert. In diesem Schritt wird entschieden, welche Daten die Zielvariable Nachfrage beeinflussen und somit mit in das Modell eingegeben werden. Die deskriptive Analyse unterstützt dabei die Visualisierung der Daten und verleiht mehr Verständnis für den Ablauf der Media-Kanäle. Darauffolgend werden die Daten in das OLS-Modell eingesetzt. Die Ergebnisse des Modells werden analysiert.
+\label{Umsetzung}
+Nachdem die theoretischen Grundlagen im letzten Kapitel vorgestellt wurden, wird in diesem Kapitel die Umsetzung beschrieben. Dieses Kapitel wird nach einem geordneten Vorgehen strukturiert. Zuerst werden verfügbare Daten vorgestellt, analysiert und sortiert. In diesem Schritt wird entschieden, welche Daten die Zielvariable Nachfrage beeinflussen und somit mit in das Modell eingegeben werden. Die deskriptive Analyse unterstützt dabei die Visualisierung der Daten und verleiht mehr Verständnis für den zeitlichen Einsatz und die Verteilung der Kosten innerhalb der Medienkanäle. Darauffolgend werden die Daten in das \ac{OLS}-Modell eingesetzt. Die Ergebnisse des Modells werden analysiert.
+
 \subsection{Einsatz der deskriptiven Analyse für die Datenbewertung}
-Wie im \autoref{deskriptiveanalyse} beschrieben, fasst die deskriptive Analyse historische Daten zusammen und zeigt wichtige Muster und Trends auf. Sie bildet die Grundlage für weiterführende Analysen und datengestützte Entscheidungen. Um auf den Einsatz des \ac{OLS}-Modells vorzubereiten, werden die Daten vom \ac{MMM} deskriptiv analysiert. \\\\
+Wie im Kapitel \nameref{deskriptiveanalyse} beschrieben, fasst die deskriptive Analyse historische Daten zusammen und zeigt wichtige Muster und Trends auf. Sie bildet die Grundlage für weiterführende Analysen und datengestützte Entscheidungen. Um auf den Einsatz des \ac{OLS}-Modells vorzubereiten, werden die Daten vom \ac{MMM} deskriptiv analysiert. \\\\
 Für das \ac{MMM}-Modell (s. \autoref{fig:mmmbonprix}) stehen Daten vom 01.01.2022 bis 01.01.2024 zur Verfügung. Diese Daten umfassen die Marketing-Ausgaben, wie Katalogausgaben, Online-Marketingausgaben und Mediaausgaben. Für Mediakanäle sind spezifisch auch die Kosten der Unterkanäle dabei. 
 Unter diesen Daten fallen auch Kosten für (adressierbares) TV, Podcasts, \ac{dooh}+\ac{ooh}, Radio, YouTube, soziale Medien, Online-Videos und Display-Medien. Für die internen Faktoren sind Kosten von E-Mail, Push-Nachrichten und Verkaufsförderungen wie Versandkostenbefreiung und Rabatt verfügbar. Für die externen Faktoren ist ein Saisonalitätswert von einem Facebook-Saisonmodell vorhanden. Um die Wettbewerber im Modell zu berücksichtigen, sind auch Marketingausgaben von C\&A, H\&M, About You und Zalando verfügbar. Zum Schluss ermöglichen Nachfrage und Datum, den Verlauf sowie die Auswirkungen aller Faktoren auf Tagesbasis darzustellen. \\\\
 Da es auf der Media-Ebene modelliert wird, werden nicht alle Daten von dem \ac{MMM} benötigt. Für den Anfang werden nur für Media relevante Daten für das Modell entnommen. Die Daten werden von der Google BigQuery Cloud in die Google Jupyter-Notebook-Instanz geladen, um dort mit Python modelliert zu werden. Die Daten bilden eine Tabelle, in der jede Zeile nach Datum sortiert ist und einen Tag mit den Informationen aller Variablen darstellt. \\\\
 Zuerst wird die Qualität der Daten für das \ac{MMM} überprüft. Wie im \autoref{methodederkleinstenquadrate} beschrieben, führen Redundanzen zu einem falschen Ergebnis im Modell. Deshalb soll es überprüft werden, ob es allgemein Redundanzen in den Zeilen gibt. Auch ohne \(y_i\) kann der Koeffizient $\beta$ nicht geschätzt werden. In dem Media-Modell ist die Nachfrage der Zielwert \(y_i\), da es gerechnet werden soll, wie viel ein Euro als Ausgabe in einem Media-Kanal in der Nachfrage bringt. Die Nachfrage darf deswegen nicht Null sein. Daher wird im ersten Schritt überprüft, ob allgemein Redundanzen vorliegen und ob in der Spalte \anf{demand} Nullwerte vorhanden sind.\\\\
-So wurde der Code \verb|df_raw[df_raw['demand'].isnull()]| ausgeführt, um Zeilen mit einem leeren Nachfrage-Wert abzufragen. Dabei wurde eine Zeile mit einem leeren Nachfrage-Wert am 29.06.2024 identifiziert. Um den Null-Wert zu korrigieren, wurde der Durchschnitt der Nachfragen am 28.06.2024 und am 30.06.2024 für das Datum 29.06.2024 berechnet.  
+So wurde der Code \verb|df_raw[df_raw['demand'].isnull()]| ausgeführt, um Zeilen mit einem leeren Nachfrage-Wert abzufragen. Dabei wurde eine Zeile mit einem leeren Nachfrage-Wert am 29.06.2024 identifiziert. Um den Null-Wert zu korrigieren, wurde der Durchschnitt der Nachfragen am 28.06.2024 und am 30.06.2024 für das Datum 29.06.2024 berechnet und eingesetzt.  
 \begin{lstlisting}[language=Python, linewidth=\textwidth]
 mask = (df_raw['date'] == '2024-06-29')
 avg_demand = df_raw.loc[df_raw['date'].isin(['2024-06-28', '2024-06-30']), 'demand'].mean()
 df_raw.loc[mask, 'demand'] = avg_demand
 \end{lstlisting}
-
-
+Nach der Datenverarbeitung wurde ein Überblick über den Datenverlauf geschaffen, um die erste Forschungsfrage in \nameref{ZielsetzungDerArbeit}
+zu beantworten. Es wurde untersucht, wie sich die Mediaausgaben verhalten und welche möglichen Auswirkungen sie auf die Nachfrage haben. Mithilfe des Codes im \nameref{Anhang1:ZeitlicherVerlaufMitPywidgets} wird ein Liniendiagramm erstellt, bei dem die x-Achse die Zeit auf Tagesbasis darstellt. Die linke y-Achse zeigt die prozentualen Werte für die Ausgaben der Media-Kanäle, während die rechte y-Achse die prozentualen Werte für die Nachfrage darstellt. Um die Visualisierung flexibel zu gestalten, wird mithilfe von \verb|ipywidgets| eine interaktive Datendarstellung mit Auswahllisten erstellt. Diese Auswahllisten ermöglichen es, zwischen verschiedenen Media-Kanälen zu wechseln und ein flexibles Startdatum zwischen dem 01.01.2022 und dem 01.01.2025 für die x-Achse im Diagramm auszuwählen. Die prozentualen Werte der y-Achsen werden berechnet, indem die Tagesausgaben durch die Gesamtausgaben dividiert werden. Die Berechnung der prozentualen Werte ermöglicht einen besseren Vergleich zwischen den beiden Werten und vermeidet eine Darstellung mit absoluten Zahlen. Diese Ausgaben werden nach der Auswahl eines Datums neu berechnet, um eine zeitgemäße Darstellung zu gewährleisten. \\\\
+Das Kapitel \nameref{MediaKanäleInDerPraxis} beschreibt, dass Generali eine gute Erfahrung mit YouTube als Media-Kanal hat. Auch die Metaanalyse von Nielsen besagt, dass YouTube beim \ac{ROI} das TV übertrifft. Also wird der YouTube-Verlauf mit dem Verlauf der Nachfrage zuerst verglichen:\\\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.98\linewidth]{images/youtubeLineChart.png}
+    \caption{Liniendiagramm: Ein Vergleich von YouTube-Ausgaben und Nachfrage, eigene Darstellung}
+    \label{fig:youtubelinechart-label}
+\end{figure}
+Aus dem Liniendiagramm in \autoref{fig:youtubelinechart-label} geht hervor, dass die YouTube-Ausgaben sporadisch auftreten. Wie im \autoref{MediaKanäleBeiBonprix} beschrieben, entstehen Ausgaben für diesen Media-Kanal in einem begrenzten Zeitraum, etwa für einen Monat. Auch hier ist es zu erkennen, dass für den Kanal YouTube zweimal Kosten anfallen, mit einem kurzen zeitlichen Abstand. Die YouTube-Ausgaben treten meist um Mai und kurz nach September auf. Dies ist auch der Zeitraum, in dem die Nachfrage etwas höher ist. \\\\
+Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. \\\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/omacosts.png}
+    \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022}
+    \label{fig:omaverlauf}
+\end{figure}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/vf_sum.png}
+    \caption{Verlauf von Verkaufsförderung und Nachfrage ab 01.06.2024, eigene Darstellung}
+    \label{fig:verlaufvonverkaufsförderung}
+\end{figure}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\linewidth]{images/mediapie.png}
     \caption{Kostenanteil der Media-Kanäle bei bonprix, eigene Darstellung}
     \label{fig:mediapie}
 \end{figure}
-
+Um die Verteilung der Ausgaben für Media-Kanäle besser zu verstehen, werden die Ausgabenanteile der Media-Kanäle in einem Kreisdiagramm visualisiert. Der Code im \nameref{Anhang2KreisdiagrammAufteilungDerMediaausgaben} ermöglicht ebenfalls die Interaktion mit dem Startdatum und erstellt das Kreisdiagramm in \autoref{fig:mediapie} mit einem Startdatum von 01.01.2022.\\\\
+% ROI
+In diesem Kreisdiagramm in \autoref{fig:mediapie} ist es zu erkennen, dass die YouTube-Ausgaben einen relativ kleinen Anteil von 6\% betragen. Das entspricht etwas mehr als einem Drittel der TV-Ausgaben, die 17,1 \% betragen. Wenn \nameref{MediaKanäleInDerPraxis} zutrifft, dass YouTube mehr \ac{ROI} als TV erbringt und wenn die Trainingsdaten vollständig sind, wird erwartet, dass YouTube einen höheren \ac{ROAS} als TV aufweist. Es wird erwartet, dass in der optimalen Aufteilung YouTube einen höheren Anteil als in der Gegenwart aufweist. Die höchsten Kosten entfallen auf die Kombination von \ac{dooh} und \ac{ooh}, die einen Anteil von 25,4 \% aufweist.
+\newpage
 \subsection{Daten auswerten}
 \subsection{Einsetzung des Marketing-Mix-Modells}
 \subsection{Modell-Ergebnis}

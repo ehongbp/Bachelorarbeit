@@ -137,28 +137,101 @@ Die vorliegende Transferleistung beinhaltet interne vertrauliche Informationen d
 %Anhang
 \appendix
 \section*{Anhang}
+\label{anhang}
 \addcontentsline{toc}{section}{Anhang}
+\subsection*{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
+\label{Anhang1:ZeitlicherVerlaufMitPywidgets}
+\UseRawInputEncoding
+\begin{lstlisting}
+    def plot_data(x_axis, y_axis):
+    start_date_1 = y_axis.strftime("%Y-%m-%d")
+    df_raw['date'] = pd.to_datetime(df_raw['date'])
+    
+    df_1 = df_raw[(df_raw['date'] >= "2022-01-01") & (df_raw['date'] <= "2025-01-01")].copy() 
+    df_1['date'] = pd.to_datetime(df_1['date'])
+    df_1['demand_percent'] = (df_1['demand'] / df_1['demand'].sum())
+    df_1[f'{x_axis}_percent'] = (df_1[x_axis] / df_1[x_axis].sum())
+    
+    fig, ax1 = plt.subplots(figsize=(12, 8))
+    
+    line1, = ax1.plot(df_1['date'], df_1[f'{x_axis}_percent'], color='#FF69B4', label=f"{x_axis}")
+    ax1.set_xlabel("Datum", fontsize=12)
+    ax1.set_ylabel("Channel Costs", fontsize=12)
+    
+    ax2 = ax1.twinx()
+    line2, = ax2.plot(df_1['date'], df_1['demand_percent'], color='#87CEFA', label="Demand Percent")
+    ax2.set_ylabel("Demand Percent", fontsize=12)
+    
+    lines = [line1, line2]
+    labels = [line.get_label() for line in lines]
+    ax1.legend(lines, labels, loc="upper left")
+    
+    plt.title(f"Zeitlicher Verlauf der Werte für {x_axis}", fontsize=14)
+    plt.xticks(rotation=45)
+    plt.grid(True)
+    plt.show()
 
+x_axis_dropdown = widgets.Dropdown(
+    options=["oma_costs", "organic_costs", "catalog_costs_total", "abs_discount_value", "sum_vkb", "c_and_a_costs", "h_and_m_costs", "aboutyou_costs", "zalando_costs","mail_newsletter", "mail_trigger", "push_newsletter", "push_trigger""tv_costs", "podcast_costs", "addressable_tv_costs", "radio_costs", "dooh_ooh_costs", "youtube_costs", "olv_costs", "display_media_costs", "social_media_costs", "media_print_costs"],
+    description="X-Achse:",
+)
 
+y_axis_dropdown = widgets.DatePicker(
+    description="Start Date",
+    disabled=False,
+    value=date(2022, 1, 1),
+    min=date(2022, 1, 1),  
+    max=date(2025, 1, 1),
+)
 
-\iffalse
-\subsection*{Anhang 1}
-\label{anhang:Ersterhebung}
-\addcontentsline{toc}{subsection}{Anhang 1}
-Anforderungen aus der Ersterhebung:
-\begin{center}
-    \includegraphics[height=0.88\textheight]{images/Metriken_ersterhebung_manuell.png}
-\end{center}
-
+interact(plot_data, x_axis=x_axis_dropdown, y_axis=y_axis_dropdown)
+\end{lstlisting}
 \newpage
-\subsection*{Anhang 2}
-\label{anhang:gruppiert}
-\addcontentsline{toc}{subsection}{Anhang 2}
-Metriken nach Gruppierung und Konfliktlösung:
-\begin{center}
-    \includegraphics[width=1\textwidth]{images/Metriken_Gruppiert_manuell.png}
-\end{center}
-\fi
+\subsection*{Anhang 2: Kreisdiagramm Aufteilung der Mediaausgaben}
+\label{Anhang2KreisdiagrammAufteilungDerMediaausgaben}
+\begin{lstlisting}
+start_date_1 = "2022-01-01"
+end_date_1 = "2024-11-30"
+start_date_1 = pd.to_datetime(start_date_1)
+end_date_1 = pd.to_datetime(end_date_1)
+
+def plot_data(x_axis):
+    start_date_1 = x_axis.strftime("%Y-%m-%d")
+    df_1 = df_raw[(df_raw['date'] >= start_date_1) & (df_raw['date'] <= end_date_1)].copy() 
+    df_1['date'] = pd.to_datetime(df_1['date'])
+    channels = ["tv_costs", "podcast_costs", "addressable_tv_costs", "radio_costs", 
+            "dooh_ooh_costs", "youtube_costs", "olv_costs", 
+            "display_media_costs", "social_media_costs", "media_print_costs"]
+
+    channel_sums = {channel: float(df_1[channel].sum()) for channel in channels}
+    total_cost = sum(channel_sums.values())
+
+    channel_proportions = {channel: (cost / total_cost) * 100 for channel, cost in channel_sums.items()}
+
+    plt.figure(figsize=(8, 8))
+    plt.pie(
+        channel_sums.values(),
+        labels=channel_sums.keys(),
+        autopct='%1.1f%%',
+        startangle=90
+    )
+
+    plt.title("Channel Cost Proportions", fontsize=14)
+    plt.show()
+    filename = 'ausgaben_media_pie.png'
+    plt.savefig(filename, dpi=300, bbox_inches='tight')
+    plt.close() 
+
+x_axis_dropdown = widgets.DatePicker(
+    description="Start Date",
+    disabled=False,
+    value=date(2022, 1, 1),
+    min=date(2022, 1, 1),  
+    max=date(2024, 10, 30),
+)
+
+interact(plot_data, x_axis=x_axis_dropdown)
+\end{lstlisting}
 
 \newpage
 \end{document}
