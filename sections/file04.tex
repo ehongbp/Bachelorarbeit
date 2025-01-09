@@ -49,5 +49,59 @@ Um die Verteilung der Ausgaben für Media-Kanäle besser zu verstehen, werden di
 In diesem Kreisdiagramm in \autoref{fig:mediapie} ist es zu erkennen, dass die YouTube-Ausgaben einen relativ kleinen Anteil von 6\% betragen. Das entspricht etwas mehr als einem Drittel der TV-Ausgaben, die 17,1 \% betragen. Wenn \nameref{MediaKanäleInDerPraxis} zutrifft, dass YouTube mehr \ac{ROI} als TV erbringt und wenn die Trainingsdaten vollständig sind, wird erwartet, dass YouTube einen höheren \ac{ROAS} als TV aufweist. Es wird erwartet, dass in der optimalen Aufteilung YouTube einen höheren Anteil als in der Gegenwart aufweist. Die höchsten Kosten entfallen auf die Kombination von \ac{dooh} und \ac{ooh}, die einen Anteil von 25,4 \% aufweist.
 \newpage
 \subsection{Daten auswerten}
+Wie im \autoref{einschränkungenderregression} beschrieben, muss die Kollinearität zwischen den Prädiktoren behoben werden. Als Erstes wird die Korrelationsmatrix der Prädiktoren untersucht. Mithilfe der Methode \verb|.corr()| wird die Korrelation zwischen den Prädiktoren berechnet. Anschließend wird die Korrelation mit der Funktion \verb|.heatmap| aus der Bibliothek \verb|seaborn| farblich visualisiert.
+\begin{figure}[H]
+    \centering
+    \begin{lstlisting}[language=Python, linewidth=\textwidth]
+df_corr_media=dfcmedia.corr() 
+plt.figure(figsize=(15, 12))
+sns.heatmap(df_corr_media, annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Korrelationsmatrix")
+plt.show()
+\end{lstlisting}
+    \includegraphics[width=1\linewidth]{images/korrelationsmatrix.png}
+    \caption{Korrelationsmatrix der Prädiktoren, eigene Darstellung}
+    \label{fig:korrelationsmatrix}
+\end{figure}
+Wie im \autoref{einschränkungenderregression} beschrieben, weist ein großer absoluter Wert in der Korrelationsmatrix auf eine hohe Korrelation hin. Das bedeutet, dass sowohl Werte nahe -1 als auch nahe 1 eine hohe Korrelation beschreiben. Die negative Korrelation ist unproblematisch, da der Betrag der negativen Werte alle gleich oder unter 0,05 bleibt. Hingegen ist die positive Korrelation problematisch. Paare wie YouTube mit Display Media, \ac{olv} mit Display Media, YouTube mit \ac{olv}, YouTube mit Social Media, Social Media mit Display Media haben alle einen Wert von mindestens 0,56. \\\\
+Es wird mit einer Untersuchung von \ac{VIF} fortgesetzt. Zuerst werden numerische Werte herausgefiltert. Danach werden Werte ohne Veränderung, also Standardabweichung gleich 0, mit \verb|.std() > 0| entfernt. Zum Schluss wird mithilfe der Methode \verb|variance_inflation_factor()| der \ac{VIF} ausgerechnet. 
+\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+X = X.select_dtypes(include=[np.number]) 
+X = X.loc[:, X.std() > 0]
+vif = pd.DataFrame()
+vif["Variable"] = X.columns
+vif["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+print(vif)
+\end{lstlisting}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        Variable               & VIF       \\ \midrule
+        tv\_costs              & 1.376725  \\
+        podcast\_costs         & 1.946688  \\
+        addressable\_tv\_costs & 2.257337  \\
+        radio\_costs           & 1.143652  \\
+        dooh\_ooh\_costs       & 1.321926  \\
+        youtube\_costs         & 7.717482  \\
+        olv\_costs             & 4.336781  \\
+        display\_media\_costs  & 6.224349  \\
+        social\_media\_costs   & 2.658416  \\ \bottomrule
+    \end{tabular}
+    \label{tab:viftabelle}
+    \caption{Variance Inflation Factor (VIF) for Variables, eigene Darstellung}
+\end{table}
+In der \hyperref[tab:viftabelle]{Tabelle VIF} wird erkannt, dass YouTube und Display Media jeweils einen \ac{VIF}-Wert über 5 besitzen. Nach \autoref{einschränkungenderregression} werden sie als problematisch eingestuft. Basierend auf den Erfahrungen in der Abteilung wird ein \ac{VIF}-Wert ab 2 als problematisch angesehen. \ac{olv}, Social Media und eventuell adressierbarer TV werden daher als problematisch betrachtet. Dies bestätigt auch die hohen Korrelationswerte in der \autoref{fig:korrelationsmatrix}. Nach dem Austausch mit der Media-Abteilung wird bestätigt, dass Display Media, YouTube, \ac{olv} und Social Media oft zusammen aktiviert werden. In der Analyse werden diese Kanäle deshalb als Variable \verb|video_costs| zusammengefasst: 
+\begin{lstlisting}
+df["video_costs"] = df["youtube_costs"] + df["olv_costs"] + 
+                df["display_media_costs"] + df["social_media_costs"]
+\end{lstlisting}
+Nach der Verarbeitung von den Prädiktoren wird die hohe Korrelation in der Korrelationsmatrix beseitigt:
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/korrelationafter.png}
+    \caption{Korrelationsmatrix nach der Behebung von hoher Korrelation, eigene Darstellung}
+    \label{fig:korrelationsmatrix-danach}
+\end{figure}
 \subsection{Einsetzung des Marketing-Mix-Modells}
 \subsection{Modell-Ergebnis}
