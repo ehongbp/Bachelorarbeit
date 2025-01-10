@@ -23,7 +23,7 @@ Y = \beta_0 + \beta_1 X_{1} + \beta_2 X_{2} + \dots + \beta_p X_{p} + \varepsilo
 \end{equation}
 \(p\) bezeichnet dabei die Anzahl der unabhängigen Variablen. Das \ac{MLR}-Modell ähnelt dem der linearen Regression und unterstellt ebenfalls einen linearen Zusammenhang \cite{frick2021data}. Im \ac{MMM} können die abhängigen Variablen Preis, digitale Ausgaben, Zeitungs- und Magazinkosten, TV-Kosten etc. sein und die Ausgabe-Variable kann Nachfrage, Marktanteil und Gewinn sein \cite{akinkunmi2018data}.
 \\\\
-Um die optimalen Schätzwerte in einer klassischen linearen Regression zu ermitteln, wird meistens die Methode der kleinsten Quadrate (engl. \ac{OLS}) oder eine Maximum Likelihood-Schätzung (engl. \ac{MLE}) verwendet. In beiden Fällen wird die Summe der kleinsten Abweichungsquadrate (engl. \ac{SSR}), um für die Daten optimale Modellwerte zu liefern \cite[S. 246]{frick2021data}. 
+Um die optimalen Schätzwerte in einer klassischen linearen Regression zu ermitteln, wird meistens die Methode der kleinsten Quadrate (engl. \ac{OLS}) oder eine Maximum Likelihood-Schätzung (engl. \ac{MLE}) verwendet. In beiden Fällen wird die Summe der kleinsten Abweichungsquadrate (engl. \ac{RSS}), um für die Daten optimale Modellwerte zu liefern \cite[S. 246]{frick2021data}. 
 \subsection{Einschränkungen der Regression}
 \label{einschränkungenderregression}
 Bei dem Einsatz einer multiplen linearen oder einer linearen Regression können Probleme auftauchen \cite{james2013introduction}: 
@@ -37,12 +37,6 @@ Bei dem Einsatz einer multiplen linearen oder einer linearen Regression können 
 \end{itemize}
 Diese Probleme können nach der Modellerstellung mithilfe der grafischen Darstellungen geprüft werden. Solange Auffälligkeiten bestehen, sollen die Daten oder das Modell nicht in der gedachten Form verwendet werden. Allerdings können die Daten, die die Voraussetzungen nicht erfüllen, durch eine Datentransformation verwendet werden. Beispielsweise kann das lineare Modell bei der Wertentwicklung eines Sparkontos nicht eingesetzt werden, da durch den Zinseszinseffekt ein exponentieller Zusammenhang besteht. Die Logarithmierung des Kontowerts erzeugt einen nahezu linearen Zusammenhang. Nach der Datentransformation ist zu achten, dass die Datenbasis verändert wird und die Interpretation angepasst werden soll. In dem Fall ist der Koeffizient der unabhängigen Variablen nicht mehr die Steigerung in der Einheit des Kontowertes, sondern eine prozentuale Steigerung. Je nach Transformationsart ist die Interpretation mit Sorgfalt zu überprüfen \cite{akinkunmi2018data}. \\\\
 Eine Methode, um die Kollinearität aufzudecken, ist die Untersuchung der Korrelationsmatrix der Prädiktoren. Wenn ein hoher absoluter Wert in der Matrix auftritt, deutet es auf ein Paar hoch korrelierter Variablen hin und somit auf ein Kollinearitätsproblem in den Daten. Es ist möglich, dass Kollinearität zwischen mehreren Variablen besteht, ohne dass eine hohe Korrelation auftritt. Diese Situation wird Multikollinearität genannt.\\\\
-Statt dem Untersuchen der Korrelationsmatrix kann die Multikollinearität durch den \ac{VIF} aufgedeckt werden. Der \ac{VIF} misst den Einfluss der Kollinearität auf die Varianz von $\hat{\beta_j}$. Er wird berechnet, indem die Varianz von $\hat{\beta_j}$ im vollständigen Modell durch die Varianz von $\hat{\beta_j}$ in einem Modell ohne andere Prädiktoren dividiert wird. Der kleinstmögliche Wert des \ac{VIF} ist 1, was ein vollständiges Fehlen von Kollinearität bedeutet. In der Praxis tritt ein kleiner Anteil an Kollinearität zwischen den Prädiktoren auf. Als Faustregel gilt, ein \ac{VIF}-Wert über 5, spätestens ab 10, weist auf eine problematische Kollinearität hin. \\\\
-\begin{equation}
-VIF(\hat{\beta}_j) = \frac{1}{1 - R^2_{X_j|X_{-j}}}
-\label{vif}
-\end{equation}
-wobei \( R^2_{X_j|X_{-j}} \) das \( R^2 \) aus einer Regression von \( X_j \) auf alle anderen Prädiktoren ist. Wenn \( R^2_{X_j|X_{-j}} \) nahe bei eins liegt, ist Kollinearität vorhanden, und der VIF wird groß sein.\\\\
 Zusammenfassend ist die \ac{MLR} eine grundlegende und wichtige Methode der Datenanalyse und erfordert Aufmerksamkeit, weil die Prognose außerhalb der unbekannten Daten mit Unsicherheit verbunden ist \cite{akinkunmi2018data}. 
 
 \subsection{Methode der kleinsten Quadrate}
@@ -117,6 +111,27 @@ Und die Spur von H ist p:
 \end{equation}
 \(tr(H)\) ist die Summe der diagonalen Elemente von H. Die diagonalen Elemente enthalten wichtige Informationen. Ein großer \(h_i\)-Wert weist auf eine Warnung hin und bedeutet, dass die \(i\)-te Beobachtung einen entscheidenden, aber nicht überprüfbaren Einfluss haben könnte. Ein h < 0,2 scheint unproblematisch zu sein, ein h-Wert zwischen 0,2 und 0,5 ist riskant. Wenn es in der Kontrolle ist, sollte ein h < 0,5 vermieden werden \cite{huber1981robust}. \\\\
 Aus geometrischer Sicht hat \(\hat{y}\) den kürzesten Abstand zu \(y\) aufgrund der Orthogonalität. Die Spaltenvektoren von X werden mit \(x_0, x_1, \ldots, x_p\) bezeichnet. Dabei ist \(x_0\) der Vektor mit konstantem Wert 1. Diese Vektoren bilden einen Unterraum von $\mathbb{R}^N$ auf und werden in die Formel \( RSS(\beta) = \|y - X\beta\|^2 \) eingesetzt, um das Ergebnis zu minimieren. Nach der Minimierung entsteht ein Parameter $\hat{\beta}$, sodass der Residuum-Vektor \(y-\hat{y}\) orthogonal zu diesem Unterraum steht. Daher stellt \(\hat{y}\) die orthogonale Projektion von \(y\) dar. Die \anf{Hut}-Matrix berechnet diese orthogonale Projektion, daher wird sie auch Projektionsmatrix genannt \cite{hastie2009elements}. 
+\subsection{Anpassungsgüte und die Varianzanalyse}
+\label{AnpassungsgüteUndDieVarianzanalyse}
+Um die Anpassungsgüte eines Modells zu beschreiben, wird das Bestimmtheitsmaß verwendet. Sei dabei \ac{SST} die gesamte Streuung der abhängigen Variable \( y \) um den Mittelwert \( \bar{y} \), sei \(e\) das Residuum, sei \ac{SSM} die durch das Modell erklärte Streuung, und sei \ac{RSS} die Streuung der Residuen. Dann wird das Bestimmtheitsmaß beschrieben durch: 
+\begin{equation}
+\text{Bestimmtheitsmaß: }\frac{SSR}{SST} = \frac{\beta^{T}X^{T}M_{y}\beta}{y^{T}M_{y}y} = 1 - \frac{e^{T}e}{y^{T}M_{y}y}.
+\label{R2kurz}
+\end{equation}
+Das Bestimmtheitsmaß hat die Notation  \( R^2 \) und liegt zwischen 0 und 1. Es misst den Anteil der Gesamtvariation in \(y\), der durch die Variation der Prädiktoren erklärt wird. Das Bestimmtheitsmaß beträgt 0, wenn die Regression eine horizontale Gerade ist. Das bedeutet, dass alle Prädiktoren $\beta_j$s (außer $\beta_0$) gleich 0 sind. In diesem Fall ist der vorhergesagte $y$ Wert immer $\bar{y}$ und die Abweichung des $x$ von dem Mittelwert wird nicht in die Vorhersage für $y$ berücksichtigt. So hat x keine Aussagekraft. Der andere extreme Fall \(R^2\)=1 tritt auf, wenn alle \(x\) und \(y\) Werte auf einer Gerade liegen, sodass alle Residuen 0 sind. Wenn alle Werte von $y_i$ auf einer orthogonalen Linie liegen, hat $R^2$ keine Bedeutung und es kann nicht berechnet werden.  \\\\ 
+Regressionen werden oft für die Vorhersage verwendet. 
+In diesem Fall wird untersucht, wie gut das Regressionsmodell die Veränderungen der abhängigen Variablen vorhersagt. Eine äquivalente Methode zur Berechnung von $R^2$ kann dargestellt durch: 
+\begin{equation}
+R^2 = \frac{\left[\sum_{i}(y_i - \bar{y})(\hat{y}_i - \hat{y})\right]^2}{\left[\sum_{i}(y_i - \bar{y})^2\right]\left[\sum_{i}(\hat{y}_i - \hat{y})^2\right]}
+\label{R2Formel}
+\end{equation}
+$R^2$ ist die quadrierte Korrelation zwischen den Beobachtungen und den vom Modell erzeugten Vorhersagen.\\\\
+Der \autoref{einschränkungenderregression} beschreibt das Problem der Kollinearität und das Erkennen der Kollinearität durch die Korrelationsmatrix. Statt des Untersuchens der Korrelationsmatrix kann die Multikollinearität durch den \ac{VIF} aufgedeckt werden. Der \ac{VIF} misst den Einfluss der Kollinearität auf die Varianz von $\hat{\beta_j}$. Er wird berechnet, indem die Varianz von $\hat{\beta_j}$ im vollständigen Modell durch die Varianz von $\hat{\beta_j}$ in einem Modell ohne andere Prädiktoren dividiert wird. Der kleinstmögliche Wert des \ac{VIF} ist 1, was ein vollständiges Fehlen von Kollinearität bedeutet. In der Praxis tritt ein kleiner Anteil an Kollinearität zwischen den Prädiktoren auf. Als Faustregel gilt, ein \ac{VIF}-Wert über 5, spätestens ab 10, weist auf eine problematische Kollinearität hin. \\\\
+\begin{equation}
+VIF(\hat{\beta}_j) = \frac{1}{1 - R^2_{X_j|X_{-j}}}
+\label{vif}
+\end{equation}
+wobei \( R^2_{X_j|X_{-j}} \) das \( R^2 \) aus einer Regression von \( X_j \) auf alle anderen Prädiktoren ist. Wenn \( R^2_{X_j|X_{-j}} \) nahe bei eins liegt, ist Kollinearität vorhanden, und der VIF wird groß sein \cite{james2013introduction}.\\\\
 \subsection{Huber-Regression}
 \label{huberregression}
 Im Jahr 1964 veröffentlichte Huber das Paper \anf{Robust Estimation of A Location Parameter}, in dem er einen neuen Ansatz zur robusten Schätzung vorstellte. Das Papier thematisiert die Schätzung eines Lageparameters in einer kontaminierten Normalverteilung. Huber versucht, mehr Robustheit zu erreichen, indem er eine andere Funktion der Fehler minimiert als die Summe ihrer Quadrate. Damit argumentiert Huber, dass die tatsächliche Verteilung der Daten von der angenommenen Verteilung abweichen könnte und somit ein übles arithmetisches Mittel liefert. Eine leichte Abweichung könnte die Varianz sprengen. Es gab schon Substitute für das arithmetische Mittel wie den getrimmten Mittelwert, Windsorizing etc., aber eine allgemeine Theorie der robusten Statistik fehlte noch. Somit bildete Huber die Grundlagen der robusten Statistik in diesem Papier \cite{huberpapier}. \\\\
