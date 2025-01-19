@@ -1,6 +1,7 @@
 \newpage
-\section{Theoretische Grundlagen (ca. 5 Seiten/10)}
+\section{Theoretische Grundlagen}
 \label{TheoretischeGrundlagen}
+In diesem Kapitel werden die statistischen Grundlagen für die Modellierung vorgestellt. Zuerst wird die deskriptive Analyse definiert und beschrieben. Danach wird die lineare Regression beschrieben. Der \autoref{einfuehrungInDieRegression} umfasst einfache und multiple lineare Regression. Nach der linearen Regression werden die Einschränkungen der Regression aufgelistet. Es gibt Voraussetzungen, um ein lineares Modell zu trainieren. Es wird diskutiert, wie der Umgang mit den Einschränkungen ist. Eine gängige Methode für die lineare Regression ist die Methode der kleinsten Quadrate. Deshalb wird darauffolgend die Methode der kleinsten Quadrate mathematisch erklärt. Anschließend werden Werte wie Bestimmtheitsmaß vorgestellt, die Gültigkeit eines Modells messen. Nachfolgend wird eine robustere Schätzung, Methode der kleinsten absoluten Abweichungen vorgestellt und zum Schluss die Huber-Loss-Funktion, die Methode der kleinsten Quadrate und Methode der absoluten Abweichungen integriert. 
 \subsection{Deskriptive Analyse}
 \label{deskriptiveanalyse}
 Die deskriptive Analyse stellt einen wichtigen Schritt im Prozess der Datenwissenschaft im Marketing dar, da sie ein umfassendes Verständnis von historischen Daten vermittelt. Sie ermöglicht es den Marketern, wesentliche Muster, Trends und Beziehungen in den Daten zusammenzufassen, zu visualisieren und zu interpretieren. Somit bildet die deskriptive Analyse Grundlagen für fortgeschrittenere Analysen wie prädiktive und präskriptive Analysen. Die deskriptive Analyse ist essenziell, um Kundenverhalten und -präferenzen zu verstehen, Markttrends und Konkurrenzdynamik zu identifizieren, Marketingeffekte zu evaluieren und Entscheidungsfindung im datengesteuerten Marketing zu unterstützen\cite{brown2024mastering}. \\\\
@@ -115,7 +116,7 @@ Aus geometrischer Sicht hat \(\hat{y}\) den kürzesten Abstand zu \(y\) aufgrund
 \label{AnpassungsgüteUndDieVarianzanalyse}
 Um die Anpassungsgüte eines Modells zu beschreiben, wird das Bestimmtheitsmaß verwendet. Sei dabei \ac{SST} die gesamte Streuung der abhängigen Variable \( y \) um den Mittelwert \( \bar{y} \), sei \(e\) das Residuum, sei \ac{SSM} die durch das Modell erklärte Streuung, und sei \ac{RSS} die Streuung der Residuen. Dann wird das Bestimmtheitsmaß beschrieben durch: 
 \begin{equation}
-\text{Bestimmtheitsmaß: }\frac{SSR}{SST} = \frac{\beta^{T}X^{T}M_{y}\beta}{y^{T}M_{y}y} = 1 - \frac{e^{T}e}{y^{T}M_{y}y}.
+\text{Bestimmtheitsmaß: }\frac{RSS}{SST} = \frac{\beta^{T}X^{T}M_{y}\beta}{y^{T}M_{y}y} = 1 - \frac{e^{T}e}{y^{T}M_{y}y}.
 \label{R2kurz}
 \end{equation}
 Das Bestimmtheitsmaß hat die Notation  \( R^2 \) und liegt zwischen 0 und 1. Es misst den Anteil der Gesamtvariation in \(y\), der durch die Variation der Prädiktoren erklärt wird. Das Bestimmtheitsmaß beträgt 0, wenn die Regression eine horizontale Gerade ist. Das bedeutet, dass alle Prädiktoren $\beta_j$s (außer $\beta_0$) gleich 0 sind. In diesem Fall ist der vorhergesagte $y$ Wert immer $\bar{y}$ und die Abweichung des $x$ von dem Mittelwert wird nicht in die Vorhersage für $y$ berücksichtigt. So hat x keine Aussagekraft. Der andere extreme Fall \(R^2\)=1 tritt auf, wenn alle \(x\) und \(y\) Werte auf einer Gerade liegen, sodass alle Residuen 0 sind. Wenn alle Werte von $y_i$ auf einer orthogonalen Linie liegen, hat $R^2$ keine Bedeutung und es kann nicht berechnet werden.  \\\\ 
@@ -125,14 +126,42 @@ In diesem Fall wird untersucht, wie gut das Regressionsmodell die Veränderungen
 R^2 = \frac{\left[\sum_{i}(y_i - \bar{y})(\hat{y}_i - \hat{y})\right]^2}{\left[\sum_{i}(y_i - \bar{y})^2\right]\left[\sum_{i}(\hat{y}_i - \hat{y})^2\right]}
 \label{R2Formel}
 \end{equation}
-$R^2$ ist die quadrierte Korrelation zwischen den Beobachtungen und den vom Modell erzeugten Vorhersagen.\\\\
-Der \autoref{einschränkungenderregression} beschreibt das Problem der Kollinearität und das Erkennen der Kollinearität durch die Korrelationsmatrix. Statt des Untersuchens der Korrelationsmatrix kann die Multikollinearität durch den \ac{VIF} aufgedeckt werden. Der \ac{VIF} misst den Einfluss der Kollinearität auf die Varianz von $\hat{\beta_j}$. Er wird berechnet, indem die Varianz von $\hat{\beta_j}$ im vollständigen Modell durch die Varianz von $\hat{\beta_j}$ in einem Modell ohne andere Prädiktoren dividiert wird. Der kleinstmögliche Wert des \ac{VIF} ist 1, was ein vollständiges Fehlen von Kollinearität bedeutet. In der Praxis tritt ein kleiner Anteil an Kollinearität zwischen den Prädiktoren auf. Als Faustregel gilt, ein \ac{VIF}-Wert über 5, spätestens ab 10, weist auf eine problematische Kollinearität hin. \\\\
+$R^2$ ist die quadrierte Korrelation zwischen den Beobachtungen und den vom Modell erzeugten Vorhersagen \cite{greene2003econometric}.\\\\
+Auch die Hypothese zu einem spezifischen Koeffizienten kann überprüft werden.  
+\begin{equation}
+t_k = \frac{(b_k - \beta_k)/\sqrt{\sigma^2 S^{kk}}}{\sqrt{[(n-K)s^2/\sigma^2]/(n-K)}} = \frac{b_k - \beta_k}{\sqrt{s^2 S^{kk}}}
+\label{eq:tk_formula}
+\end{equation}
+In der \autoref{eq:tk_formula} wird eine t-Verteilung mit (n - K) Freiheitsgraden beschrieben. \(n\) ist die Anzahl der Stichproben, K ist die Anzahl der Koeffizienten. \(b_k\) ist der berechnete Koeffizient und $S^{kk}$ steht für das \(k\)-te Element in \((X^TX)^{-1}\). \(t_k\) kann verwendet werden, um die Hypothese zu überprüfen oder um ein Konfidenzintervall für die individuellen Elemente des $\beta$s zu formen.  \cite{greene2003econometric}.\\\\
+Ein üblicher Test besteht darin, die Signifikanz zu überprüfen, ob $\beta$ von null abweicht. Die geeignete Teststatistik wird durch \autoref{eq:t_formula} dargestellt. 
+\begin{equation}
+t = \frac{b_k}{s_{b_k}}
+\label{eq:t_formula}
+\end{equation}
+Der Wert \(t\) ist in den meisten Computerprogrammen als Teil der Standardausgaben zu finden. Diese Statistik wird in der Regel als \(t\)-Verhältnis (\(t-ratio\)) für den Schätzer \(b_k\) bezeichnet. Wenn \( \left|\frac{b_k}{s_{b_k}}\right| > t_{\alpha/2} \), wird die Hypothese abgelehnt. Dabei ist \( t_{\alpha/2} \) der 100 (1 - \(\alpha\)/2)-Prozent-kritische Wert der \(t\)-Verteilung mit (n - K) Freiheitsgraden, und der Koeffizient wird als statistisch signifikant anerkannt. Wenn die Tabelle der kritischen Werte nicht sofort verfügbar ist und es sich um große Stichproben handelt, wird der Wert 1,96 als Richtwert für ein Signifikanzniveau von 5 \% verwendet. Das \(t\)-Verhältnis ist in den meisten Computerprogrammen ein zentraler Bestandteil der Regressionsanalyse. Dabei ist es für den Test der Hypothese, dass ein Koeffizient null ist. \\\\
+Der \autoref{einschränkungenderregression} beschreibt das Problem der Kollinearität und das Erkennen der Kollinearität durch die Korrelationsmatrix. Statt des Untersuchens der Korrelationsmatrix kann die Multikollinearität durch den \ac{VIF} aufgedeckt werden. Der \ac{VIF} misst den Einfluss der Kollinearität auf die Varianz von $\hat{\beta_j}$. Er wird berechnet, indem die Varianz von $\hat{\beta_j}$ im vollständigen Modell durch die Varianz von $\hat{\beta_j}$ in einem Modell ohne andere Prädiktoren dividiert wird. Der kleinstmögliche Wert des \ac{VIF} ist 1, was ein vollständiges Fehlen von Kollinearität bedeutet. In der Praxis tritt ein kleiner Anteil an Kollinearität zwischen den Prädiktoren auf. Als Faustregel gilt, ein \ac{VIF}-Wert über 5, spätestens ab 10, weist auf eine problematische Kollinearität hin \cite{james2013introduction}. \\\\
 \begin{equation}
 VIF(\hat{\beta}_j) = \frac{1}{1 - R^2_{X_j|X_{-j}}}
 \label{vif}
 \end{equation}
 wobei \( R^2_{X_j|X_{-j}} \) das \( R^2 \) aus einer Regression von \( X_j \) auf alle anderen Prädiktoren ist. Wenn \( R^2_{X_j|X_{-j}} \) nahe bei eins liegt, ist Kollinearität vorhanden, und der VIF wird groß sein \cite{james2013introduction}.\\\\
-\subsection{Huber-Regression}
+\subsection{Methode der kleinsten absoluten Abweichungen}
+\label{MethodeDerKleinstenAbsolutenAbweichungen}
+Die Methode der kleinsten Quadrate (\ac{OLS}, s. \nameref{methodederkleinstenquadrate}) kann durch Ausreißer wesentlich verzerrt werden. Insbesondere in der Praxis der Mikro- und Finanzökonomie, da dort dickschwänzige Störverteilungen auftreten, die die Wahrscheinlichkeit solcher Verzerrungen erhöhen. Diese Herausforderungen haben zur Entwicklung sogenannter \anf{robusten} Schätzer geführt, die weniger von ausreißenden Beobachtungen beeinflusst werden. Die Methode der kleinsten absoluten Abweichungen, \ac{LAD}, ist einer der robusten Schätzer.\\\\
+Die \ac{OLS} weist großen Abweichungen ein hohes Gewicht zu, was dazu führt, dass kleine oder mittlere Datensätze aufgrund einiger unüblichen Daten anfällig sind. Die Methode der kleinsten absoluten Abweichungen (\ac{LAD}) wurde als eine Alternative vorgeschlagen, die das Problem behebt. 
+\begin{equation}
+\label{eq:minimization}
+\min_{\mathbf{b}_0} \sum_{i=1}^{n} \left| y_i - \mathbf{x}_i^T \mathbf{b}_0 \right|
+\end{equation}
+In der \autoref{eq:minimization} wird der Schätzer \(b_0\) so bestimmt, dass die Summe der Beträge der Abweichungen zwischen \(x_i^Tb_0\) und \(y_i\) minimal ist. Die Abweichungen werden für jede Beobachtung berechnet, und die Summe über alle Beobachtungen wird berechnet. \\\\
+Die Methode der absoluten Abweichungen entstand vor der Entstehung der Methode der letzten Quadrate, die vor mehr als 200 Jahren entstand. In der Finanzökonomie wird der \ac{LAD}-Schätzer weniger verwendet und er wurde bei der Einführung von \ac{OLS} verdrängt. Er wurde verdrängt, weil \ac{OLS} viel einfacher zu berechnen ist. Außerdem sind die statistischen Eigenschaften von \ac{OLS} in der modernen Forschung besser etabliert als die \ac{LAD}. Und in der Regel sind die Stichproben groß genug, dass der Vorteil des \ac{LAD} bei kleinen Stichproben nicht mehr relevant ist. \\\\
+Der \ac{LAD}-Schätzer ist ein Spezialfall der Quantilregression, der ausgedrückt wird durch: 
+\begin{equation}
+\label{eq:probability}
+\text{Prob}[y_i \leq x_i^T\beta] = q.
+\end{equation}
+Der \ac{LAD}-Schätzer schätzt die Medianregression. Dabei ist die Lösung die Quantilregression, wenn q = 0,5. Das heißt, \(\beta\) wird so gewählt, dass 50 \% der \(y_i\)-Werte der Stichproben kleiner oder gleich \(x_i^T \beta\) sind. 
+\subsection{Huber-Loss-Funktion}
 \label{huberregression}
 Im Jahr 1964 veröffentlichte Huber das Paper \anf{Robust Estimation of A Location Parameter}, in dem er einen neuen Ansatz zur robusten Schätzung vorstellte. Das Papier thematisiert die Schätzung eines Lageparameters in einer kontaminierten Normalverteilung. Huber versucht, mehr Robustheit zu erreichen, indem er eine andere Funktion der Fehler minimiert als die Summe ihrer Quadrate. Damit argumentiert Huber, dass die tatsächliche Verteilung der Daten von der angenommenen Verteilung abweichen könnte und somit ein übles arithmetisches Mittel liefert. Eine leichte Abweichung könnte die Varianz sprengen. Es gab schon Substitute für das arithmetische Mittel wie den getrimmten Mittelwert, Windsorizing etc., aber eine allgemeine Theorie der robusten Statistik fehlte noch. Somit bildete Huber die Grundlagen der robusten Statistik in diesem Papier \cite{huberpapier}. \\\\
 Die Huber-Loss-Funktion ist eine Mischung aus quadratischem Verlust für relativ kleine Fehler und absolutem Verlust für relativ große Fehler, während das Grad der Mischung von einem Tuning-Parameter gesteuert wird \cite{indirekthuber}. 
@@ -147,5 +176,12 @@ Die Huber-Loss-Funktion ist definiert als:
 \end{cases}
 \label{eq:huber}
 \end{equation}
-Die Huber-Loss-Funktion ist für kleine \(x\)-Werte quadratisch und für große \(x\)-Werte linear. Der Parameter $\alpha$ steuert die Mischung zwischen linearer und quadratischer Bestrafung. Die Methode der kleinsten Quadrate und die Methode der kleinsten absoluten Abweichungen (\ac{LAD}) können als zwei Extremfälle der Huber-Loss-Funktion betrachtet werden. Abweichend vom traditionellen Huber-Schätzer konvergiert der $\alpha$ gegen 0, um Verzerrungen bei der Schätzung in der mittleren Regressionsfunktion zu reduzieren, wenn die bedingte Verteilung nicht symmetrisch ist. Allerdings darf $\alpha$ nicht zu schnell sinken, um die Robustheit zu erhalten \cite{indirekthuber}.   
- 
+Die Huber-Loss-Funktion ist für kleine \(x\)-Werte quadratisch und für große \(x\)-Werte linear. Der Parameter \(k\) steuert die Mischung zwischen linearer und quadratischer Bestrafung. Die Methode der kleinsten Quadrate und die Methode der kleinsten absoluten Abweichungen (\ac{LAD}) können als zwei Extremfälle der Huber-Loss-Funktion betrachtet werden. Abweichend vom traditionellen Huber-Schätzer konvergiert der \(k\) gegen 0, um Verzerrungen bei der Schätzung in der mittleren Regressionsfunktion zu reduzieren, wenn die bedingte Verteilung nicht symmetrisch ist. Allerdings darf \(k\) nicht zu schnell sinken, um die Robustheit zu erhalten \cite{indirekthuber}. \\\\
+Die \autoref{fig:verlustfunktionvergleich} vergleicht die drei Verlustfunktionen, \ac{OLS}, \ac{LAD} und die Huber-Loss-Funktion. Die \(x\)-Achse stellt die Abweichung zwischen dem Schätzer und der Beobachtung dar und die \(y\)-Achse stellt die Gewichtung dar. Die quadratische Verlustfunktion legt bei endlichen Stichproben deutlich mehr auf Beobachtungen mit großen absoluten Residuen \(|y-f(x)|\) während des Anpassungsprozesses. Daher ist sie weniger robust und ihre Leistung verschlechtert sich wesentlich bei stark fehlerhaft gemessenen \(y\)-Werten (Ausreißer). Andere robuste Methoden, wie die absolute Verlustfunktion, schneiden bei Ausreißern besser ab \cite{hastie2009elements}. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/3losses.png}
+    \caption{Vergleich der drei Verlustfunktionen: \ac{OLS}, \ac{LAD} und Huber-Loss-Funktion \cite{hastie2009elements} \cite{hastie2009elements}}
+    \label{fig:verlustfunktionvergleich}
+\end{figure} 
+Im Bereich der Regression besteht eine Beziehung zwischen der quadratischen Verlustfunktion \((y - f(x))^2\) und der absoluten Funktion \(|y - f(x)|\). Für die quadratische Verlustfunktion ist die optimale Vorhersage der durchschnittliche Wert von \(Y\), wenn \(x\) bekannt ist. Für die absolute Verlustfunktion ist die optimale Vorhersage der Wert, bei dem die Hälfte der möglichen Werte von \(Y\) kleiner und die andere Hälfte größer als dieser Wert ist \cite{hastie2009elements}. Die Huber-Loss-Funktion wechselt zwischen diesen beiden Ansätzen, je nach Größe des Residuums.

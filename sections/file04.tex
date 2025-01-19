@@ -26,7 +26,7 @@ Das Kapitel \nameref{MediaKanäleInDerPraxis} beschreibt, dass Generali eine gut
 \end{figure}
 Aus dem Liniendiagramm in \autoref{fig:youtubelinechart-label} geht hervor, dass die YouTube-Ausgaben sporadisch auftreten. Wie im \autoref{MediaKanäleBeiBonprix} beschrieben, entstehen Ausgaben für diesen Media-Kanal in einem begrenzten Zeitraum, etwa für einen Monat. Auch hier ist es zu erkennen, dass für den Kanal YouTube zweimal Kosten anfallen, mit einem kurzen zeitlichen Abstand. Die YouTube-Ausgaben treten meist um Mai und kurz nach September auf. Dies ist auch der Zeitraum, in dem die Nachfrage etwas höher ist. \\\\
 Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. \\\\
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{images/omacosts.png}
     \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022}
@@ -48,7 +48,8 @@ Um die Verteilung der Ausgaben für Media-Kanäle besser zu verstehen, werden di
 % ROI
 In diesem Kreisdiagramm in \autoref{fig:mediapie} ist es zu erkennen, dass die YouTube-Ausgaben einen relativ kleinen Anteil von 6\% betragen. Das entspricht etwas mehr als einem Drittel der TV-Ausgaben, die 17,1 \% betragen. Wenn \nameref{MediaKanäleInDerPraxis} zutrifft, dass YouTube mehr \ac{ROI} als TV erbringt und wenn die Trainingsdaten vollständig sind, wird erwartet, dass YouTube einen höheren \ac{ROAS} als TV aufweist. Es wird erwartet, dass in der optimalen Aufteilung YouTube einen höheren Anteil als in der Gegenwart aufweist. Die höchsten Kosten entfallen auf die Kombination von \ac{dooh} und \ac{ooh}, die einen Anteil von 25,4 \% aufweist.
 \newpage
-\subsection{Daten auswerten}
+\subsection{Prüfung und Umgang mit Multikollinearität}
+\label{PrüfungUndUmgangMitMultikollinearität}
 Wie im \autoref{einschränkungenderregression} beschrieben, muss die Kollinearität zwischen den Prädiktoren behoben werden. Als Erstes wird die Korrelationsmatrix der Prädiktoren untersucht. Mithilfe der Methode \verb|.corr()| wird die Korrelation zwischen den Prädiktoren berechnet. Anschließend wird die Korrelation mit der Funktion \verb|.heatmap| aus der Bibliothek \verb|seaborn| farblich visualisiert.
 \begin{figure}[H]
     \centering
