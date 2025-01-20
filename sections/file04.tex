@@ -25,20 +25,22 @@ Das Kapitel \nameref{MediaKanäleInDerPraxis} beschreibt, dass Generali eine gut
     \label{fig:youtubelinechart-label}
 \end{figure}
 Aus dem Liniendiagramm in \autoref{fig:youtubelinechart-label} geht hervor, dass die YouTube-Ausgaben sporadisch auftreten. Wie im \autoref{MediaKanäleBeiBonprix} beschrieben, entstehen Ausgaben für diesen Media-Kanal in einem begrenzten Zeitraum, etwa für einen Monat. Auch hier ist es zu erkennen, dass für den Kanal YouTube zweimal Kosten anfallen, mit einem kurzen zeitlichen Abstand. Die YouTube-Ausgaben treten meist um Mai und kurz nach September auf. Dies ist auch der Zeitraum, in dem die Nachfrage etwas höher ist. \\\\
-Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. \\\\
+Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. Das weist daraufhin, dass das Online-Marketing möglicherweise einen großen Einfluss auf die Nachfrage hat und im Modell zu berücksichtigen ist.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{images/omacosts.png}
-    \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022}
+    \includegraphics[width=0.8\linewidth]{images/omacosts.png}
+    \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022, eigene Darstellung}
     \label{fig:omaverlauf}
 \end{figure}
-\begin{figure}
+Neben dem Online-Marketing hat auch die Verkaufsförderung einen möglichen Einfluss auf die Nachfrage. In \autoref{fig:verlaufvonverkaufsförderung} ist zu erkennen, dass zwischen Juli 2024 und Dezember 2024 vier hohe Spitzen der Nachfrage und Verkaufsförderungskosten parallel entstanden sind. 
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{images/vf_sum.png}
+    \includegraphics[width=0.8\linewidth]{images/vf_sum.png}
     \caption{Verlauf von Verkaufsförderung und Nachfrage ab 01.06.2024, eigene Darstellung}
     \label{fig:verlaufvonverkaufsförderung}
 \end{figure}
-\begin{figure}[ht]
+Es wird erwartet, dass Einflussfaktoren wie Online-Marketing und Verkaufsförderung einen sofortigen Einfluss auf die Nachfrage haben. Eine Erhöhung der Ausgaben für solche Faktoren führt zu einem sofortigen Anstieg der Nachfrage. Im Vergleich dazu haben Medienkanäle wie YouTube keinen direkt erkennbaren Effekt auf die Nachfrage. Es wird angenommen, dass der Effekt von Media-Kanäle milder und nachhaltiger auf das Konsumverhalten ist. Um den Nachfrageeffekt von Media-Kanäle zu quantifizieren, wird später die Huber-Regression eingesetzt und der \ac{ROAS} berechnet.
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{images/mediapie.png}
     \caption{Kostenanteil der Media-Kanäle bei bonprix, eigene Darstellung}
@@ -97,7 +99,7 @@ In der \hyperref[tab:viftabelle]{Tabelle VIF} wird erkannt, dass YouTube und Dis
 df["video_costs"] = df["youtube_costs"] + df["olv_costs"] + 
                 df["display_media_costs"] + df["social_media_costs"]
 \end{lstlisting}
-Nach der Verarbeitung von den Prädiktoren wird die hohe Korrelation in der Korrelationsmatrix beseitigt:
+Nach der Verarbeitung von den Prädiktoren wird die hohe Korrelation in der Korrelationsmatrix in \autoref{fig:korrelationsmatrix-danach} beseitigt.
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{images/korrelationafter.png}
