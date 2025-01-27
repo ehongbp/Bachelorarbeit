@@ -1,9 +1,10 @@
 \newpage
-\section{Umsetzung (ca. 10 Seiten)}
+\section{Umsetzung}
 \label{Umsetzung}
 Nachdem die theoretischen Grundlagen im letzten Kapitel vorgestellt wurden, wird in diesem Kapitel die Umsetzung beschrieben. Dieses Kapitel wird nach einem geordneten Vorgehen strukturiert. Zuerst werden verfügbare Daten vorgestellt, analysiert und sortiert. In diesem Schritt wird entschieden, welche Daten die Zielvariable Nachfrage beeinflussen und somit mit in das Modell eingegeben werden. Die deskriptive Analyse unterstützt dabei die Visualisierung der Daten und verleiht mehr Verständnis für den zeitlichen Einsatz und die Verteilung der Kosten innerhalb der Medienkanäle. Darauffolgend werden die Daten in das \ac{OLS}-Modell eingesetzt. Die Ergebnisse des Modells werden analysiert.
 
-\subsection{Einsatz der deskriptiven Analyse für die Datenbewertung}
+\subsection{Einsatz der deskriptiven Analyse}
+\label{EinsatzDerDeskriptivenAnalyse}
 Wie im Kapitel \nameref{deskriptiveanalyse} beschrieben, fasst die deskriptive Analyse historische Daten zusammen und zeigt wichtige Muster und Trends auf. Sie bildet die Grundlage für weiterführende Analysen und datengestützte Entscheidungen. Um auf den Einsatz des \ac{OLS}-Modells vorzubereiten, werden die Daten vom \ac{MMM} deskriptiv analysiert. \\\\
 Für das \ac{MMM}-Modell (s. \autoref{fig:mmmbonprix}) stehen Daten vom 01.01.2022 bis 01.01.2024 zur Verfügung. Diese Daten umfassen die Marketing-Ausgaben, wie Katalogausgaben, Online-Marketingausgaben und Mediaausgaben. Für Mediakanäle sind spezifisch auch die Kosten der Unterkanäle dabei. 
 Unter diesen Daten fallen auch Kosten für (adressierbares) TV, Podcasts, \ac{dooh}+\ac{ooh}, Radio, YouTube, soziale Medien, Online-Videos und Display-Medien. Für die internen Faktoren sind Kosten von E-Mail, Push-Nachrichten und Verkaufsförderungen wie Versandkostenbefreiung und Rabatt verfügbar. Für die externen Faktoren ist ein Saisonalitätswert von einem Facebook-Saisonmodell vorhanden. Um die Wettbewerber im Modell zu berücksichtigen, sind auch Marketingausgaben von C\&A, H\&M, About You und Zalando verfügbar. Zum Schluss ermöglichen Nachfrage und Datum, den Verlauf sowie die Auswirkungen aller Faktoren auf Tagesbasis darzustellen. \\\\
@@ -24,14 +25,16 @@ Das Kapitel \nameref{MediaKanäleInDerPraxis} beschreibt, dass Generali eine gut
     \caption{Liniendiagramm: Ein Vergleich von YouTube-Ausgaben und Nachfrage, eigene Darstellung}
     \label{fig:youtubelinechart-label}
 \end{figure}
+\noindent
 Aus dem Liniendiagramm in \autoref{fig:youtubelinechart-label} geht hervor, dass die YouTube-Ausgaben sporadisch auftreten. Wie im \autoref{MediaKanäleBeiBonprix} beschrieben, entstehen Ausgaben für diesen Media-Kanal in einem begrenzten Zeitraum, etwa für einen Monat. Auch hier ist es zu erkennen, dass für den Kanal YouTube zweimal Kosten anfallen, mit einem kurzen zeitlichen Abstand. Die YouTube-Ausgaben treten meist um Mai und kurz nach September auf. Dies ist auch der Zeitraum, in dem die Nachfrage etwas höher ist. \\\\
-Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. Das weist daraufhin, dass das Online-Marketing möglicherweise einen großen Einfluss auf die Nachfrage hat und im Modell zu berücksichtigen ist.
+Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. Das weist darauf hin, dass das Online-Marketing möglicherweise einen großen Einfluss auf die Nachfrage hat und im Modell zu berücksichtigen ist.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{images/omacosts.png}
     \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022, eigene Darstellung}
     \label{fig:omaverlauf}
 \end{figure}
+\noindent
 Neben dem Online-Marketing hat auch die Verkaufsförderung einen möglichen Einfluss auf die Nachfrage. In \autoref{fig:verlaufvonverkaufsförderung} ist zu erkennen, dass zwischen Juli 2024 und Dezember 2024 vier hohe Spitzen der Nachfrage und Verkaufsförderungskosten parallel entstanden sind. 
 \begin{figure}[H]
     \centering
@@ -39,20 +42,22 @@ Neben dem Online-Marketing hat auch die Verkaufsförderung einen möglichen Einf
     \caption{Verlauf von Verkaufsförderung und Nachfrage ab 01.06.2024, eigene Darstellung}
     \label{fig:verlaufvonverkaufsförderung}
 \end{figure}
-Es wird erwartet, dass Einflussfaktoren wie Online-Marketing und Verkaufsförderung einen sofortigen Einfluss auf die Nachfrage haben. Eine Erhöhung der Ausgaben für solche Faktoren führt zu einem sofortigen Anstieg der Nachfrage. Im Vergleich dazu haben Medienkanäle wie YouTube keinen direkt erkennbaren Effekt auf die Nachfrage. Es wird angenommen, dass der Effekt von Media-Kanäle milder und nachhaltiger auf das Konsumverhalten ist. Um den Nachfrageeffekt von Media-Kanäle zu quantifizieren, wird später die Huber-Regression eingesetzt und der \ac{ROAS} berechnet.
+\noindent
+Es wird erwartet, dass Einflussfaktoren wie Online-Marketing und Verkaufsförderung einen sofortigen Einfluss auf die Nachfrage haben. Eine Erhöhung der Ausgaben für solche Faktoren führt zu einem sofortigen Anstieg der Nachfrage. Im Vergleich dazu haben Medienkanäle wie YouTube keinen direkt erkennbaren Effekt auf die Nachfrage. Es wird angenommen, dass der Effekt von Media-Kanäle milder und nachhaltiger auf das Konsumverhalten ist. Um den Nachfrageeffekt von Media-Kanäle zu quantifizieren, werden später die \ac{OLS}-Funktion und die Huber-Regression eingesetzt und der \ac{ROAS} berechnet.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{images/mediapie.png}
     \caption{Kostenanteil der Media-Kanäle bei bonprix, eigene Darstellung}
     \label{fig:mediapie}
 \end{figure}
+\noindent
 Um die Verteilung der Ausgaben für Media-Kanäle besser zu verstehen, werden die Ausgabenanteile der Media-Kanäle in einem Kreisdiagramm visualisiert. Der Code im \nameref{Anhang2KreisdiagrammAufteilungDerMediaausgaben} ermöglicht ebenfalls die Interaktion mit dem Startdatum und erstellt das Kreisdiagramm in \autoref{fig:mediapie} mit einem Startdatum von 01.01.2022.\\\\
 % ROI
 In diesem Kreisdiagramm in \autoref{fig:mediapie} ist es zu erkennen, dass die YouTube-Ausgaben einen relativ kleinen Anteil von 6\% betragen. Das entspricht etwas mehr als einem Drittel der TV-Ausgaben, die 17,1 \% betragen. Wenn \nameref{MediaKanäleInDerPraxis} zutrifft, dass YouTube mehr \ac{ROI} als TV erbringt und wenn die Trainingsdaten vollständig sind, wird erwartet, dass YouTube einen höheren \ac{ROAS} als TV aufweist. Es wird erwartet, dass in der optimalen Aufteilung YouTube einen höheren Anteil als in der Gegenwart aufweist. Die höchsten Kosten entfallen auf die Kombination von \ac{dooh} und \ac{ooh}, die einen Anteil von 25,4 \% aufweist.
 \newpage
 \subsection{Prüfung und Umgang mit Multikollinearität}
 \label{PrüfungUndUmgangMitMultikollinearität}
-Wie im \autoref{einschränkungenderregression} beschrieben, muss die Kollinearität zwischen den Prädiktoren behoben werden. Als Erstes wird die Korrelationsmatrix der Prädiktoren untersucht. Mithilfe der Methode \verb|.corr()| wird die Korrelation zwischen den Prädiktoren berechnet. Anschließend wird die Korrelation mit der Funktion \verb|.heatmap| aus der Bibliothek \verb|seaborn| farblich visualisiert.
+Wie im \autoref{einschränkungenderregression} beschrieben, muss die Kollinearität zwischen den Prädiktoren behoben werden. Als Erstes wird die Korrelationsmatrix der Prädiktoren, alle Unterkanäle in Media, untersucht. Mithilfe der Methode \verb|.corr()| wird die Korrelation zwischen den Prädiktoren berechnet. Anschließend wird die Korrelation mit der Funktion \verb|.heatmap| aus der Bibliothek \verb|seaborn| farblich visualisiert.
 \begin{figure}[H]
     \centering
     \begin{lstlisting}[language=Python, linewidth=\textwidth]
@@ -62,7 +67,7 @@ sns.heatmap(df_corr_media, annot=True, cmap='coolwarm', fmt=".2f")
 plt.title("Korrelationsmatrix")
 plt.show()
 \end{lstlisting}
-    \includegraphics[width=1\linewidth]{images/korrelationsmatrix.png}
+    \includegraphics[width=0.9\linewidth]{images/korrelationsmatrix.png}
     \caption{Korrelationsmatrix der Prädiktoren, eigene Darstellung}
     \label{fig:korrelationsmatrix}
 \end{figure}
@@ -102,12 +107,158 @@ df["video_costs"] = df["youtube_costs"] + df["olv_costs"] +
 Nach der Verarbeitung von den Prädiktoren wird die hohe Korrelation in der Korrelationsmatrix in \autoref{fig:korrelationsmatrix-danach} beseitigt.
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth]{images/korrelationafter.png}
+    \includegraphics[width=0.75\linewidth]{images/korrelationafter.png}
     \caption{Korrelationsmatrix nach der Behebung von hoher Korrelation, eigene Darstellung}
     \label{fig:korrelationsmatrix-danach}
 \end{figure}
+Die \ac{VIF}-Werte dazu in \autoref{tab:small_vif} signalisieren auch einen sicheren Umgang mit der Kollinearität. 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|r|}
+        \hline
+        \textbf{Feature} & \textbf{VIF} \\ 
+        \hline
+        tv\_costs            & 1.073154 \\
+        podcast\_costs       & 1.333356 \\
+        addressable\_tv\_costs & 1.792658 \\
+        radio\_costs         & 1.141264 \\
+        dooh\_ooh\_costs     & 1.341440 \\
+        video\_costs         & 1.774887 \\
+        \hline
+    \end{tabular}
+    \caption{VIF-Werte nach der Behebung der Kollinearität, eigene Darstellung}
+    \label{tab:small_vif}
+\end{table}
 \subsection{Einsatz des Marketing-Mix-Modells}
+\label{EinsatzDesMarketing-Mix-Modells}
+Nachdem die \ac{VIF}-Werte verbessert worden sind, werden die Prädiktoren in das Modell eingesetzt. \\\\
+Es gibt bereits eine interne \ac{MMM}-Bibliothek, die Marketing-Daten verarbeitet und transformiert, beispielsweise die Werbewirkung (Adstock), die im \autoref{Marketing-Mix-ModellBeiBonprix} beschrieben ist. Dabei wird angestrebt, den \ac{ROAS} für verschiedene Kanäle wie Media, \ac{OMA} und Katalog zu berechnen. Optional kann auch die Wavelet-Funktion aktiviert werden, die die Nachfragefunktion glättet. Dadurch wird erhofft, drastische Schwankungen in der Nachfrage zu entfernen. Drastische Schwankungen werden, wie im \autoref{deskriptiveanalyse} beschrieben, durch Aktionen wie Rabatte oder Online-Marketing verursacht. Außerdem haben Media-Kanäle ein Markenziel (siehe \nameref{MediaKanäleBeiBonprix}) und haben keinen sofortigen Einfluss auf die Nachfrage (siehe \nameref{deskriptiveanalyse}). Der Einsatz der Wavelet-Funktion zielt darauf ab, die grundlegende Kurve in der Nachfrage zu berechnen.  
+\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+model_specification = {'client_id': 2, 'regression': 'huber', 
+    'levels_diff': 'levels', 'competitors': 'yes', 
+    'interaction_effect': 'no', 
+    'channels': ['oma_costs', 'media_costs', 'catalog_costs'],
+    'target': 'demand', 'M_a': 21, 'start_date': '2020-01-01', 
+    'end_date': '2025-01-01', 'trend': 'yes', 'wavelets': 'yes', 
+    'wavelets_target': 'demand', 'wavelets_channel': 'media_costs'}
+df_wlt_decomp = wavelet_trans(data_raw = df_raw, 
+trans_target = model_specification['target'])
+\end{lstlisting}
+Die Wavelet-Funktion wird verwendet, um die Nachfrage über verschiedene Zeitspannen hinweg zu glätten. Im Modell werden Zeitspannen von jeweils 1, 2, 4, 8, 16, 32 und 64 Tagen verwendet. In der \autoref{fig:wavelet} wird die geglättete Nachfrage visualisiert. Die Funktion in Magenta ist die Nachfrage, geglättet über 8 Tage. Hierbei ist zu erkennen, dass die Funktion umso glatter wird, je mehr Tage geglättet werden. Die blaue Funktion auf der rechten Seite repräsentiert die Glättung über die höchste Tagesanzahl. Die drastischen Schwankungen auf Tagesbasis verschwinden. \\\\
+In \autoref{lst:stargazer} werden Modellergebnisse ausgedruckt. Der Code wendet \ac{OLS} an und listet Modellergebnisse in einer Tabelle auf. In \verb|cost_columns| werden Kanalnamen gespeichert und durch \verb|join()| werden die Daten der Kanäle dementsprechend im Modell berücksichtigt. 
+\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+demand_days = [1, 2, 4, 8, 16, 32, 64]
+regressions = []
+for days in demand_days:
+    reg = sm.OLS.from_formula(f"demand_{days}d ~ " + " + ".join(cost_columns), df_wlt_decomp).fit()
+    regressions.append(reg)
+results_table = Stargazer(regressions)
+results_table.custom_columns(['Daily', '2Days', '4Days', '8Days', '16Days', '32Days', '64Days'], [1, 1, 1, 1, 1, 1, 1])
+results_table.show_model_numbers(False)
+results_table
+\end{lstlisting}
+\label{lst:stargazer}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/wavelet.png}
+    \caption{Nachfrage-Funktion, geglättet durch die Wavelet-Funktion}
+    \label{fig:wavelet}
+\end{figure}
 \begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/ols1.png}
+    \caption{\ac{OLS} Modellergebnis mit Media-Kanäle}
+    \label{fig:ols1}
+\end{figure}
+Die Modellergebnisse in \autoref{fig:ols1} zeigen unrealistische Werte. Die Zahlen in der Tabelle sollen \ac{ROAS}-Werte darstellen. Laut \nameref{AnpassungsgüteUndDieVarianzanalyse} ist 5 \% ein Richtwert für das Signifikanzniveau. Daher sind Werte mit mindestens zwei Sternchen (\(**p < 0,05\)) signifikant. Die \verb|video_costs| führen laut Modellergebnissen zu einem \ac{ROAS} von 21 Euro pro investiertem Euro auf Tagesbasis, während \ac{dooh}/\ac{ooh} einen \ac{ROAS} von 13 Euro erzielen. Die drei Sternchen deuten zudem auf eine hohe Signifikanz hin und das ist unmöglich. Das Bestimmtheitsmaß mit 0,05 auf Tagesbasis ist sehr niedrig. In \autoref{AnpassungsgüteUndDieVarianzanalyse} wird beschrieben, dass ein Bestimmtheitsmaß nahe 0 auf eine schlechte Anpassungsgüte des Modells hinweist. Das bedeutet für das Modell, dass nur 5 \% der Gesamtvariation in der Nachfrage durch die Variation der Prädiktoren erklärt werden. Eine mögliche Ursache für das schlechte Ergebnis könnte das Fehlen wichtiger Prädiktoren sein. Die Nachfrageeffekte anderer Einflussfaktoren werden nicht berücksichtigt, und das Modell ordnet den Effekt den Media-Kanälen zu.\\\\
+Das \ac{MMM} bei bonprix hat wie im \autoref{Marketing-Mix-ModellBeiBonprix} beschrieben einige große Einflussfaktoren. Die Konkurrenten, Saisonalität,  Mailversand, Verkaufsförderungen und andere Marketingkanäle wie Katalog und \ac{OMA}. Um wichtige Einflussfaktoren im Modell aufzunehmen, werden diese Prädiktoren in das Modell eingeführt. Da die Einheit des Mailversands in den Daten nicht in Euro, sondern in der Anzahl der Mails angegeben ist, werden diese zunächst nicht berücksichtigt. \\\\
+Die Saisonalität von Meta \verb|pred_prophet|, Online-Marketing-Ausgaben \verb|oma_costs|, Trend \verb|trend|, Katalogausgaben \verb|catalog_costs_total|, Rabatt in Euro \verb|abs_discount_value|, Versandkostenbefreiung in Euro \verb|sum_vkb| sowie die Mediaausgaben von vier Konkurrenten werden entnommen und untersucht. Der Trend wird durch aufzählende Zahlen ab 1 definiert, wie im \nameref{Marketing-Mix-ModellBeiBonprix} bei \ac{MMM} beschrieben. Zuerst wird die Kollinearität aller Prädiktoren untersucht. Allerdings führt die Kombination der Prädiktoren zu hohen \ac{VIF}-Werten. \verb|oma_costs| weist einen \ac{VIF}-Wert von 29,8 auf, während \verb|pred_prophet| einen Wert von 18,25 aufweist. Beide Werte liegen über 10, was in der linearen Regression vermieden werden sollte.
+\noindent
+\begin{table}[H]
+    \centering
+    \begin{tabular}{@{}p{0.45\textwidth}@{\hskip 0.05\textwidth}p{0.45\textwidth}@{}}
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \textbf{Tabelle mit trend und pred\_prophet} \\
+            \begin{tabular}{|l|r|}
+                \hline
+                \textbf{Feature} & \textbf{VIF} \\ 
+                \hline
+                tv\_costs & 1.107315 \\
+                podcast\_costs & 1.449923 \\
+                addressable\_tv\_costs & 1.848572 \\
+                radio\_costs & 1.192543 \\
+                dooh\_ooh\_costs & 1.369786 \\
+                video\_costs & 1.876529 \\
+                oma\_costs & 29.821870 \\
+                pred\_prophet & 18.257818 \\
+                trend & 4.455062 \\
+                catalog\_costs\_total & 1.064823 \\
+                abs\_discount\_value & 3.273036 \\
+                sum\_vkb & 2.472620 \\
+                c\_and\_a\_costs & 1.865910 \\
+                h\_and\_m\_costs & 1.603432 \\
+                aboutyou\_costs & 1.602379 \\
+                zalando\_costs & 1.949403 \\
+                \hline
+            \end{tabular}
+        \end{minipage}%
+        &
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \textbf{Tabelle ohne trend und pred\_prophet} \\
+            \begin{tabular}{|l|r|}
+                \hline
+                \textbf{Feature} & \textbf{VIF} \\ 
+                \hline
+            tv\_costs          & 1.091880 \\
+            podcast\_costs     & 1.390602 \\
+            addressable\_tv\_costs & 1.827729 \\
+            radio\_costs       & 1.150108 \\
+            dooh\_ooh\_costs   & 1.356071 \\
+            video\_costs       & 1.872274 \\
+            oma\_costs         & 6.153659 \\
+            catalog\_costs\_total & 1.058975 \\
+            abs\_discount\_value & 2.842333 \\
+            sum\_vkb           & 2.450430 \\
+            c\_and\_a\_costs   & 1.847006 \\
+            h\_and\_m\_costs   & 1.561418 \\
+            aboutyou\_costs    & 1.568057 \\
+            zalando\_costs     & 1.913839 \\
+                \hline
+            \end{tabular}
+        \end{minipage}%
+    \end{tabular}
+    \caption{Vergleich der \ac{VIF}-Werte zwischen zwei Tabellen}
+    \label{VIFvergleich}
+\end{table}
+\noindent
+\verb|oma_costs| hat den höchsten \ac{VIF}-Wert, aber es ist beabsichtigt, sie im Modell zu behalten. Denn in der \nameref{deskriptiveanalyse} wurde herausgefunden, dass \verb|oma_costs| einen ähnlichen Verlauf wie die Nachfrage hat und möglicherweise einen sofortigen Einfluss auf die Nachfrage auf Tagesbasis hat (s. \autoref{fig:omaverlauf}). Auch \verb|abs_discount_value| und \verb|sum_vkb| werden im Modell behalten. Denn \autoref{fig:verlaufvonverkaufsförderung} visualisiert den Zusammenhang, dass ein Anstieg der Verkaufsförderung möglicherweise einen Anstieg der Nachfrage verursacht. \verb|trend| und \verb|pred_prophet| wurden nach der Analyse entfernt. Die \ac{VIF}-Werte wurden verringert, sodass nur \verb|oma_costs| bei 6,15 liegt, während der Rest unter 3 liegt.\\\\
+Die Modellergebnisse werden mit den neuen Prädiktoren nochmal in der \autoref{fig:OLSohneSaison} visualisiert. Das Bestimmtheitsmaß in der ersten Spalte für Tagesbasis wird auf 0,769 erhöht. Auch der \ac{ROAS} von \verb|video_costs| auf Tagesbasis wird auf 5,8 Euro reduziert. Dennoch ist das Bestimmtheitsmaß für andere Zeitspannen niedrig. Je höher die Tagesanzahl ist, desto niedriger ist das Bestimmtheitsmaß. Für die Zeitspanne 64 Tage ist ein Bestimmtheitsmaß von 0,418 zu erkennen. Eine Vermutung für das abnehmende Bestimmtheitsmaß ist das Fehlen der Saisonalität. Denn die Saisonalität beeinflusst die Nachfrage in einem größeren Zeitraum.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/ols2.png}
+    \caption{\ac{OLS}-Modellergebnis ohne Saisonalität}
+    \label{fig:OLSohneSaison}
+\end{figure}
+\noindent
+Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable ausgeschlossen, und die Saisonalität wird auf alternative Weise in das Modell integriert. Der Nachfrageverlauf wurde deskriptiv analysiert und es wurde festgestellt, dass es wiederkehrende Muster gibt. Beispielsweise bilden August und Januar die Tiefpunkte, während April bis Juni sowie September bis November die Hochpunkte der Nachfrage darstellen. Es wird vermutet, dass der Wechsel der Jahreszeiten diese Muster beeinflusst. Im Frühling, insbesondere in den Monaten April, Mai und Juni, gibt es eine Übergangszeit zwischen den kalten Wintermonaten und den warmen Sommermonaten. In dieser Zeit steigt die Nachfrage nach leichteren, dünneren Kleidungsstücken für die warmen Sommermonate. Umgekehrt steigt in den Herbstmonaten September, Oktober und November die Nachfrage nach wärmeren Kleidungsstücken wie Pullovern, Mänteln und Jacken als Vorbereitung auf kühlere Tage. Im Gegensatz dazu sind Januar und August Monate, in denen die Nachfrage nach Kleidung bereits gesättigt ist, da sie mitten in den kälteren bzw. heißeren Monaten liegen. Auch nach Erfahrung in der Abteilung gibt es am Wochenende eine erhöhte Nachfrage. \\\\
+Der Prädiktor \verb|is_low| kennzeichnet die Monate Januar und August, die Tiefpunkte in der Nachfrage aufweisen. \verb|is_weekend| beschreibt, ob das Datum auf ein Wochenende fällt. \verb|is_summer| und \verb|is_autumn| geben an, ob das Datum in einem der Sommer- oder Herbstmonate mit einem Hochpunkt der Nachfrage liegt. \verb|is_summer| umfasst die Monate April, Mai und Juni, während \verb|is_autumn| die Monate September, Oktober und November enthält.
+\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+df_raw['is_low'] = df_raw['date'].dt.month.isin([1,8])
+df_raw['is_weekend'] = df_raw['date'].dt.weekday >= 5  
+df_raw['is_summer'] = df_raw['date'].dt.month.isin([4,5,6])  
+df_raw['is_autumn'] = df_raw['date'].dt.month.isin([9,10,11]) 
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{images/nachfrageverlauf.png}
+    \caption{Einführung der Saisonalität, eigene Darstellung}
+    \label{fig:saisonalitätlinien}
+\end{figure}
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/boxplot.png}
     \caption{Boxplot: Nachfrage-Streuung mit Saisonalität, eigene Darstellung}

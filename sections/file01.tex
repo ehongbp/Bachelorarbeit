@@ -1,16 +1,13 @@
 
 \newpage
-\section{Einführung (ca. 4 Seiten/2.5)}
+\section{Einführung}
 \label{Einführung}
 \subsection{Motivation}
-\iffalse
-Erkläre, warum das Thema Media \ac{ROAS} im Kontext von bonprix relevant ist.
-Diskutiere die Bedeutung von Marketing-Analysen in der heutigen digitalen Welt und wie sie Unternehmen helfen, ihre Strategien zu optimieren.
-Füge aktuelle Statistiken oder Beispiele aus der Branche hinzu, um deine Argumente zu untermauern.
-\fi
+Die Motivation dieser Arbeit ergibt sich aus der aktuellen Relevanz des Media-Mix und der zunehmenden Bedeutung von datenbasierten Marketing-Analysen. Medienverantwortliche stehen vor der Herausforderung, möglichst viele Menschen zu erreichen und den Traffic zu steigern. Gleichzeitig ist es für sie von Interesse zu verstehen, wie effektiv sie das Publikum erreichen und welchen langfristigen Einfluss einzelne Media-Kanäle auf die Nachfrage haben. Dabei dient der Nachfrageeffekt der Media-Kanäle als Grundlage für fundierte Entscheidungen.\\\\
+Ein weiteres Ziel besteht darin, die optimale Verteilung des Media-Budgets zu identifizieren, um sowohl eine maximale Reichweite als auch eine nachhaltige Nachfrage zu erzielen. Während in der Abteilung parallel ein Modell zur Analyse von Traffic entwickelt wird, konzentriert sich diese Arbeit speziell auf die Untersuchung des Nachfrageeffekts. Dadurch sollen Ergebnisse bereitgestellt werden, die als Referenz für die strategische Bewertung des Media-Mix dienen können. \\
 \subsection{Zielsetzung der Arbeit}
 \label{ZielsetzungDerArbeit}
-Das Ziel dieser Arbeit ist es, die Effizienz verschiedener Media-Kanäle zu analysieren, um eine optimale Verteilung der Werbeausgaben zu realisieren. \\
+Das Ziel dieser Arbeit ist es, den Nachfrageeffekt verschiedener Media-Kanäle zu analysieren, um eine optimale Verteilung der Werbeausgaben zu realisieren. \\
 Die folgenden Fragen sollen in dieser Arbeit beantwortet werden:
 \begin{itemize}
     \item Wie verhalten sich die Mediaausgaben und sind die Daten in Bezug zu der Nachfrageänderung nachvollziehbar? 
@@ -27,13 +24,13 @@ Im Rahmen der Bachelorarbeit werden die folgenden methodischen Schritte umgesetz
     \item Eine Huber-Regression wird auf die gefilterten Nachfragedaten angewandt.
     \item Gegebenenfalls der Fachabteilung das Ergebnis zeigen, um die Nachvollziehbarkeit und Richtigkeit zu prüfen.
 \end{enumerate}
-Dabei könnte Schritt vier durch einen Austausch in der Datenwissenschaftsabteilung ersetzt werden, wenn die Kapazitäten eng werden.   
+Dabei könnte Schritt fünf durch einen Austausch in der Datenwissenschaftsabteilung ersetzt werden, wenn die Kapazitäten eng werden.   
 \subsection{Aufbau der Arbeit}
-Die vorliegende Bachelorarbeit ist in fünf Kapitel unterteilt, die einen systematischen Überblick über die Forschung zu \ac{MMM} und die Integration der Huber-Loss-Funktion geben.\\\\
+Die vorliegende Bachelorarbeit ist in fünf Kapitel unterteilt, die einen systematischen Überblick über die Forschung zu \ac{MMM} und die Integration der Methode der kleinsten Quadrate und Huber-Loss-Funktion geben.\\\\
 Das erste Kapitel \nameref{Einführung} führt in die grundlegende Problemstellung ein und betont die Relevanz der Problemlösung für den Betrieb. In diesem Kapitel werden die Forschungsfragen aufgelistet und erklärt. Es wird beschrieben, was in dieser Arbeit erreicht wird und wie das Ziel zu erreichen ist. \\\\
-Das zweite Kapitel \nameref{GeschäftlicheGrundlagen} beschreibt die Grundlagen des \ac{MMM} und definiert Media-Kanäle. Es wird auch beschrieben, welche Erfahrungen andere Unternehmen zur Kostenaufteilung in Media-Kanälen haben. Zum Schluss wird der aktuelle Zustand des \ac{MMM}s bei bonprix beschrieben, und die Media-Kanäle bei bonprix werden vorgestellt. \\\\ 
-Im dritten Kapitel \nameref{TheoretischeGrundlagen} wird die Methodik des Vorgehens beschrieben. Es wird erläutert, was eine deskriptive Analyse ist und wie die lineare sowie die multiple lineare Regression funktionieren. Anschließend werden die statistischen Grundlagen wie die Methode der kleinsten Quadrate und die Huber-Loss-Funktion vorgestellt.\\\\
-Das vierte Kapitel \nameref{Umsetzung} dokumentiert die Arbeitsschritte. Es fängt mit einer Vorstellung der Daten an. Die Daten werden verarbeitet für den Einsatz und die deskriptive Analyse wird eingesetzt. In der deskriptiven Analyse wird der Verlauf der Mediaausgaben und Nachfrage untersucht und die Aufteilung der Mediaausgaben wird visualisiert.  
+Das zweite Kapitel \nameref{GeschäftlicheGrundlagen} beschreibt die Grundlagen des \ac{MMM} und definiert Media-Kanäle. Markenimage wird definiert und das Purchase-Funnel-Modell wird erklärt. Es wird auch beschrieben, welche Erfahrungen andere Unternehmen zur Kostenaufteilung in Media-Kanälen haben. Zum Schluss wird der aktuelle Zustand des \ac{MMM}s bei bonprix beschrieben, und die Media-Kanäle bei bonprix werden vorgestellt. \\\\ 
+Im dritten Kapitel \nameref{TheoretischeGrundlagen} wird die Methodik des Vorgehens beschrieben. Es wird erläutert, was eine deskriptive Analyse ist und wie die lineare sowie die multiple lineare Regression funktionieren. Anschließend werden die statistischen Grundlagen wie die Methode der kleinsten Quadrate, die Methode der kleinsten absoluten Abweichungen und die Huber-Loss-Funktion vorgestellt. Dazu werden auch die Einschränkungen der Regression aufgelistet, die Anpassungsgüte und die Varianzanalyse werden vorgestellt.\\\\
+Das vierte Kapitel \nameref{Umsetzung} dokumentiert die Arbeitsschritte. Es fängt mit einer Vorstellung der Daten an. Die Daten werden verarbeitet für den Einsatz und die deskriptive Analyse wird eingesetzt. In der deskriptiven Analyse wird der Verlauf der Mediaausgaben und Nachfrage untersucht und die Aufteilung der Mediaausgaben wird visualisiert. Nach der deskriptiven Analyse wird die Multikollinearität zwischen den Variablen untersucht und gegebenenfalls beseitigt. Somit werden Grundlagen für die Modellierung geschaffen. Anschließend werden die Variablen in das Modell eingesetzt. Die Ergebnisse werden analysiert, und das Modell wird mit verschiedenen Kombinationen der Variablen getestet. Abschließend werden die Modellergebnisse ausgewertet und bewertet.
 \iffalse
 bonprix Handelsgesellschaft mbH hat ein Marketing-Mix-Modell. Marketing-Mix-Modell quantifiziert die Effekte verschiedener Marketingtaktiken basierend auf der Nachfrage \cite{MMMdef}. Das Marketing-Mix-Modell bei bonprix umfasst die internen Faktoren, die externen Faktoren, Wettbewerber und Marketingkanäle. Media, als ein Teil von Marketingkanälen, enthält TV, Radio, Out Of Home (Engl. Außer Haus) etc. Unter Out Of Home sind alle Werbemedien im öffentlichen Raum, wie Plakate, zu verstehen. \\\\
 Das Marketing-Mix-Modell differenziert nicht mehr zwischen den einzelnen Unterkanälen im Medienbereich. Wenn bonprix einen bestimmten Betrag für Medieninvestitionen ausgibt, fehlt eine Orientierung zu den Nachfrageeffekten der Unterkanäle und zur optimalen Kostenaufteilung.
