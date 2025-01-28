@@ -30,7 +30,7 @@ Aus dem Liniendiagramm in \autoref{fig:youtubelinechart-label} geht hervor, dass
 Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausgaben und der Nachfrage besteht. Allerdings ähnelt der Verlauf der Online-Marketingausgaben dem Verlauf der Nachfrage. Im Liniendiagramm in \autoref{fig:omaverlauf} ist zu erkennen, dass der Verlauf von Online-Marketing und Nachfrage nahezu übereinstimmt. Das weist darauf hin, dass das Online-Marketing möglicherweise einen großen Einfluss auf die Nachfrage hat und im Modell zu berücksichtigen ist.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/omacosts.png}
+    \includegraphics[width=1\linewidth]{images/omacosts.png}
     \caption{Verlauf von Ausgaben des Online-Marketings und Nachfrage ab 01.01.2022, eigene Darstellung}
     \label{fig:omaverlauf}
 \end{figure}
@@ -38,7 +38,7 @@ Mit bloßem Auge ist nicht erkennbar, ob ein Zusammenhang zwischen den Mediaausg
 Neben dem Online-Marketing hat auch die Verkaufsförderung einen möglichen Einfluss auf die Nachfrage. In \autoref{fig:verlaufvonverkaufsförderung} ist zu erkennen, dass zwischen Juli 2024 und Dezember 2024 vier hohe Spitzen der Nachfrage und Verkaufsförderungskosten parallel entstanden sind. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/vf_sum.png}
+    \includegraphics[width=1\linewidth]{images/vf_sum.png}
     \caption{Verlauf von Verkaufsförderung und Nachfrage ab 01.06.2024, eigene Darstellung}
     \label{fig:verlaufvonverkaufsförderung}
 \end{figure}
@@ -242,25 +242,31 @@ Die Modellergebnisse werden mit den neuen Prädiktoren nochmal in der \autoref{f
     \label{fig:OLSohneSaison}
 \end{figure}
 \noindent
-Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable ausgeschlossen, und die Saisonalität wird auf alternative Weise in das Modell integriert. Der Nachfrageverlauf wurde deskriptiv analysiert und es wurde festgestellt, dass es wiederkehrende Muster gibt. Beispielsweise bilden August und Januar die Tiefpunkte, während April bis Juni sowie September bis November die Hochpunkte der Nachfrage darstellen. Es wird vermutet, dass der Wechsel der Jahreszeiten diese Muster beeinflusst. Im Frühling, insbesondere in den Monaten April, Mai und Juni, gibt es eine Übergangszeit zwischen den kalten Wintermonaten und den warmen Sommermonaten. In dieser Zeit steigt die Nachfrage nach leichteren, dünneren Kleidungsstücken für die warmen Sommermonate. Umgekehrt steigt in den Herbstmonaten September, Oktober und November die Nachfrage nach wärmeren Kleidungsstücken wie Pullovern, Mänteln und Jacken als Vorbereitung auf kühlere Tage. Im Gegensatz dazu sind Januar und August Monate, in denen die Nachfrage nach Kleidung bereits gesättigt ist, da sie mitten in den kälteren bzw. heißeren Monaten liegen. Auch nach Erfahrung in der Abteilung gibt es am Wochenende eine erhöhte Nachfrage. \\\\
-Der Prädiktor \verb|is_low| kennzeichnet die Monate Januar und August, die Tiefpunkte in der Nachfrage aufweisen. \verb|is_weekend| beschreibt, ob das Datum auf ein Wochenende fällt. \verb|is_summer| und \verb|is_autumn| geben an, ob das Datum in einem der Sommer- oder Herbstmonate mit einem Hochpunkt der Nachfrage liegt. \verb|is_summer| umfasst die Monate April, Mai und Juni, während \verb|is_autumn| die Monate September, Oktober und November enthält.
-\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
-df_raw['is_low'] = df_raw['date'].dt.month.isin([1,8])
-df_raw['is_weekend'] = df_raw['date'].dt.weekday >= 5  
-df_raw['is_summer'] = df_raw['date'].dt.month.isin([4,5,6])  
-df_raw['is_autumn'] = df_raw['date'].dt.month.isin([9,10,11]) 
-\end{lstlisting}
-
+Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable ausgeschlossen, und die Saisonalität wird auf alternative Weise in das Modell integriert. Der Nachfrageverlauf wurde deskriptiv analysiert und es wurde festgestellt, dass es wiederkehrende Muster gibt (s. \autoref{fig:saisonalitätlinien}). Beispielsweise bilden August und Januar die Tiefpunkte, während April bis Juni sowie September bis November die Hochpunkte der Nachfrage darstellen. Es wird vermutet, dass der Wechsel der Jahreszeiten diese Muster beeinflusst. Im Frühling, insbesondere in den Monaten April, Mai und Juni, gibt es eine Übergangszeit zwischen den kalten Wintermonaten und den warmen Sommermonaten. In dieser Zeit steigt die Nachfrage nach leichteren, dünneren Kleidungsstücken für die warmen Sommermonate. Umgekehrt steigt in den Herbstmonaten September, Oktober und November die Nachfrage nach wärmeren Kleidungsstücken wie Pullovern, Mänteln und Jacken als Vorbereitung auf kühlere Tage. Im Gegensatz dazu sind Januar und August Monate, in denen die Nachfrage nach Kleidung bereits gesättigt ist, da sie mitten in den kälteren bzw. heißeren Monaten liegen. Auch nach Erfahrung in der Abteilung gibt es am Wochenende eine erhöhte Nachfrage. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/nachfrageverlauf.png}
     \caption{Einführung der Saisonalität, eigene Darstellung}
     \label{fig:saisonalitätlinien}
 \end{figure}
-
+\noindent
+Danach werden Variablen \verb|is_low|, \verb|is_weekend|, \verb|is_summer| und \verb|is_autumn| eingeführt. Der Prädiktor \verb|is_low| kennzeichnet die Monate Januar und August, die Tiefpunkte in der Nachfrage aufweisen. \verb|is_weekend| beschreibt, ob das Datum auf ein Wochenende fällt. \verb|is_summer| und \verb|is_autumn| geben an, ob das Datum in einem der Sommer- oder Herbstmonate mit einem Hochpunkt der Nachfrage liegt. \verb|is_summer| umfasst die Monate April, Mai und Juni, während \verb|is_autumn| die Monate September, Oktober und November enthält. Diese Variablen werden in numerische Werte umgewandelt, wobei \verb|True| in 1 und \verb|False| in 0 umgewandelt wird. Ein Boxplot wird erstellt, um die Streuung der Nachfrage in Bezug auf diese Variablen zu visualisieren. In \autoref{fig:boxplotsaison} ist zu erkennen, dass das erste Quartil, der Median und das dritte Quartil der Nachfrage bei einem positiven Saisonalitätswert höher liegen. Das zeigt einen möglichen Zusammenhang zwischen der Nachfrage und den Saisonalitätswerten. 
+\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+df_raw['is_low'] = df_raw['date'].dt.month.isin([1,8])
+df_raw['is_weekend'] = df_raw['date'].dt.weekday >= 5  
+df_raw['is_summer'] = df_raw['date'].dt.month.isin([4,5,6])  
+df_raw['is_autumn'] = df_raw['date'].dt.month.isin([9,10,11]) 
+\end{lstlisting}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/boxplot.png}
     \caption{Boxplot: Nachfrage-Streuung mit Saisonalität, eigene Darstellung}
     \label{fig:boxplotsaison}
+\end{figure}
+Bei der weiteren Modellierung zeigen \verb|addressable_tv_costs| und \verb|podcast_costs| ebenfalls unrealistische Werte. Nach Rücksprache mit der Media-Abteilung stellte sich heraus, dass Podcasts nur aktiviert werden, wenn bonprix über zusätzliches Budget verfügt. Podcasts seien kostenintensiv und hätten eine geringere Reichweite. Daher wurde der Prädiktor \verb|podcast_costs| entfernt. Das addressierbare TV sei eine kostengünstigere Variante des normalen TVs, und beide werden auf großen Bildschirmen aktiviert. Da es für die Kunden ein ähnliches Erlebnis bietet, wurde empfohlen, sie zusammenzuführen. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{images/finalmodel.png}
+    \caption{Finales Modellergebnis}
+    \label{fig:finalmodell}
 \end{figure}
