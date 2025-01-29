@@ -133,7 +133,7 @@ Die \ac{VIF}-Werte dazu in \autoref{tab:small_vif} signalisieren auch einen sich
 \label{EinsatzDesMarketing-Mix-Modells}
 Nachdem die \ac{VIF}-Werte verbessert worden sind, werden die Prädiktoren in das Modell eingesetzt. \\\\
 Es gibt bereits eine interne \ac{MMM}-Bibliothek, die Marketing-Daten verarbeitet und transformiert, beispielsweise die Werbewirkung (Adstock), die im \autoref{Marketing-Mix-ModellBeiBonprix} beschrieben ist. Dabei wird angestrebt, den \ac{ROAS} für verschiedene Kanäle wie Media, \ac{OMA} und Katalog zu berechnen. Optional kann auch die Wavelet-Funktion aktiviert werden, die die Nachfragefunktion glättet. Dadurch wird erhofft, drastische Schwankungen in der Nachfrage zu entfernen. Drastische Schwankungen werden, wie im \autoref{deskriptiveanalyse} beschrieben, durch Aktionen wie Rabatte oder Online-Marketing verursacht. Außerdem haben Media-Kanäle ein Markenziel (siehe \nameref{MediaKanäleBeiBonprix}) und haben keinen sofortigen Einfluss auf die Nachfrage (siehe \nameref{deskriptiveanalyse}). Der Einsatz der Wavelet-Funktion zielt darauf ab, die grundlegende Kurve in der Nachfrage zu berechnen.  
-\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
 model_specification = {'client_id': 2, 'regression': 'huber', 
     'levels_diff': 'levels', 'competitors': 'yes', 
     'interaction_effect': 'no', 
@@ -146,7 +146,7 @@ trans_target = model_specification['target'])
 \end{lstlisting}
 Die Wavelet-Funktion wird verwendet, um die Nachfrage über verschiedene Zeitspannen hinweg zu glätten. Im Modell werden Zeitspannen von jeweils 1, 2, 4, 8, 16, 32 und 64 Tagen verwendet. In der \autoref{fig:wavelet} wird die geglättete Nachfrage visualisiert. Die Funktion in Magenta ist die Nachfrage, geglättet über 8 Tage. Hierbei ist zu erkennen, dass die Funktion umso glatter wird, je mehr Tage geglättet werden. Die blaue Funktion auf der rechten Seite repräsentiert die Glättung über die höchste Tagesanzahl. Die drastischen Schwankungen auf Tagesbasis verschwinden. \\\\
 In \autoref{lst:stargazer} werden Modellergebnisse ausgedruckt. Der Code wendet \ac{OLS} an und listet Modellergebnisse in einer Tabelle auf. In \verb|cost_columns| werden Kanalnamen gespeichert und durch \verb|join()| werden die Daten der Kanäle dementsprechend im Modell berücksichtigt. 
-\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
 demand_days = [1, 2, 4, 8, 16, 32, 64]
 regressions = []
 for days in demand_days:
@@ -242,7 +242,7 @@ Die Modellergebnisse werden mit den neuen Prädiktoren nochmal in der \autoref{f
     \label{fig:OLSohneSaison}
 \end{figure}
 \noindent
-Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable ausgeschlossen, und die Saisonalität wird auf alternative Weise in das Modell integriert. Der Nachfrageverlauf wurde deskriptiv analysiert und es wurde festgestellt, dass es wiederkehrende Muster gibt (s. \autoref{fig:saisonalitätlinien}). Beispielsweise bilden August und Januar die Tiefpunkte, während April bis Juni sowie September bis November die Hochpunkte der Nachfrage darstellen. Es wird vermutet, dass der Wechsel der Jahreszeiten diese Muster beeinflusst. Im Frühling, insbesondere in den Monaten April, Mai und Juni, gibt es eine Übergangszeit zwischen den kalten Wintermonaten und den warmen Sommermonaten. In dieser Zeit steigt die Nachfrage nach leichteren, dünneren Kleidungsstücken für die warmen Sommermonate. Umgekehrt steigt in den Herbstmonaten September, Oktober und November die Nachfrage nach wärmeren Kleidungsstücken wie Pullovern, Mänteln und Jacken als Vorbereitung auf kühlere Tage. Im Gegensatz dazu sind Januar und August Monate, in denen die Nachfrage nach Kleidung bereits gesättigt ist, da sie mitten in den kälteren bzw. heißeren Monaten liegen. Auch nach Erfahrung in der Abteilung gibt es am Wochenende eine erhöhte Nachfrage. 
+Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable ausgeschlossen, und die Saisonalität wird auf alternative Weise in das Modell integriert. Der Nachfrageverlauf wurde deskriptiv analysiert und es wurde festgestellt, dass es wiederkehrende Muster gibt (s. \autoref{fig:saisonalitätlinien}). Beispielsweise bilden August und Januar die Tiefpunkte, während April bis Juni sowie September bis November die Hochpunkte der Nachfrage darstellen. Es wird vermutet, dass der Wechsel der Jahreszeiten diese Muster beeinflusst. Im Frühling, insbesondere in den Monaten April, Mai und Juni, gibt es eine Übergangszeit zwischen den kalten Wintermonaten und den warmen Sommermonaten. In dieser Zeit steigt die Nachfrage nach leichteren, dünneren Kleidungsstücken für die warmen Sommermonate. Umgekehrt steigt in den Herbstmonaten September, Oktober und November die Nachfrage nach wärmeren Kleidungsstücken wie Pullovern, Mänteln und Jacken als Vorbereitung auf kühlere Tage. Im Gegensatz dazu sind Januar und August Monate, in denen die Nachfrage nach Kleidung bereits gesättigt ist, da sie mitten in den kälteren bzw. heißeren Monaten liegen. Auch nach Erfahrung in der Abteilung gibt es am Wochenende eine erhöhte Nachfrage. \\\\
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{images/nachfrageverlauf.png}
@@ -250,8 +250,8 @@ Da \verb|pred_prophet| eine hohe Kollinearität erzeugt, wird diese Variable aus
     \label{fig:saisonalitätlinien}
 \end{figure}
 \noindent
-Danach werden Variablen \verb|is_low|, \verb|is_weekend|, \verb|is_summer| und \verb|is_autumn| eingeführt. Der Prädiktor \verb|is_low| kennzeichnet die Monate Januar und August, die Tiefpunkte in der Nachfrage aufweisen. \verb|is_weekend| beschreibt, ob das Datum auf ein Wochenende fällt. \verb|is_summer| und \verb|is_autumn| geben an, ob das Datum in einem der Sommer- oder Herbstmonate mit einem Hochpunkt der Nachfrage liegt. \verb|is_summer| umfasst die Monate April, Mai und Juni, während \verb|is_autumn| die Monate September, Oktober und November enthält. Diese Variablen werden in numerische Werte umgewandelt, wobei \verb|True| in 1 und \verb|False| in 0 umgewandelt wird. Ein Boxplot wird erstellt, um die Streuung der Nachfrage in Bezug auf diese Variablen zu visualisieren. In \autoref{fig:boxplotsaison} ist zu erkennen, dass das erste Quartil, der Median und das dritte Quartil der Nachfrage bei einem positiven Saisonalitätswert höher liegen. Das zeigt einen möglichen Zusammenhang zwischen der Nachfrage und den Saisonalitätswerten. 
-\begin{lstlisting}[language=Python, linewidth=\textwidth][H]
+Danach werden Variablen \verb|is_low|, \verb|is_weekend|, \verb|is_summer| und \verb|is_autumn| erstellt. Der Prädiktor \verb|is_low| kennzeichnet die Monate Januar und August, die Tiefpunkte in der Nachfrage aufweisen. \verb|is_weekend| beschreibt, ob das Datum auf ein Wochenende fällt. \verb|is_summer| und \verb|is_autumn| geben an, ob das Datum in einem der Sommer- oder Herbstmonate mit einem Hochpunkt der Nachfrage liegt. \verb|is_summer| umfasst die Monate April, Mai und Juni, während \verb|is_autumn| die Monate September, Oktober und November enthält. Diese Variablen werden in numerische Werte umgewandelt, wobei \verb|True| in 1 und \verb|False| in 0 umgewandelt wird. Ein Boxplot wird erstellt, um die Streuung der Nachfrage in Bezug auf diese Variablen zu visualisieren. In \autoref{fig:boxplotsaison} ist zu erkennen, dass das erste Quartil, der Median und das dritte Quartil der Nachfrage bei einem positiven Saisonalitätswert höher liegen. Das zeigt einen möglichen Zusammenhang zwischen der Nachfrage und den Saisonalitätswerten. Allerdings stellte sich in der deskriptiven Analyse heraus, dass \verb|is_low| eine hohe Kollinearität aufweist und daher ebenfalls entfernt wurde.
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
 df_raw['is_low'] = df_raw['date'].dt.month.isin([1,8])
 df_raw['is_weekend'] = df_raw['date'].dt.weekday >= 5  
 df_raw['is_summer'] = df_raw['date'].dt.month.isin([4,5,6])  
@@ -263,10 +263,13 @@ df_raw['is_autumn'] = df_raw['date'].dt.month.isin([9,10,11])
     \caption{Boxplot: Nachfrage-Streuung mit Saisonalität, eigene Darstellung}
     \label{fig:boxplotsaison}
 \end{figure}
-Bei der weiteren Modellierung zeigen \verb|addressable_tv_costs| und \verb|podcast_costs| ebenfalls unrealistische Werte. Nach Rücksprache mit der Media-Abteilung stellte sich heraus, dass Podcasts nur aktiviert werden, wenn bonprix über zusätzliches Budget verfügt. Podcasts seien kostenintensiv und hätten eine geringere Reichweite. Daher wurde der Prädiktor \verb|podcast_costs| entfernt. Das addressierbare TV sei eine kostengünstigere Variante des normalen TVs, und beide werden auf großen Bildschirmen aktiviert. Da es für die Kunden ein ähnliches Erlebnis bietet, wurde empfohlen, sie zusammenzuführen. 
-\begin{figure}
+In der weiteren Modellierung zeigen \verb|addressable_tv_costs| und \verb|podcast_costs| ebenfalls unrealistische Werte. \verb|addressable_tv_costs| weist einen \ac{ROAS} von -25 Euro auf, und \verb|podcast_costs| weist einen Wert von -101 Euro auf. Nach Rücksprache mit der Media-Abteilung stellte sich heraus, dass Podcasts nur aktiviert werden, wenn bonprix über zusätzliches Budget verfügt. Podcasts sind kostenintensiv und haben eine geringere Reichweite. Außerdem ist in \autoref{fig:mediapie} zu erkennen, dass \verb|podcast_costs| nur 0,7 \% der gesamten Mediaausgaben einnimmt und die letzte Aktivierung nach der deskriptiven Analyse im Mai 2022 stattfand. Daher wurde der Prädiktor \verb|podcast_costs| aus dem Modell entfernt. Das addressierbare TV seie eine kostengünstigere Variante des normalen TVs, und beide werden auf großen Bildschirmen aktiviert. Da es für die Kunden ein ähnliches Erlebnis bietet, wurde empfohlen, sie zusammenzuführen. Nach der Fertigstellung der neuen Kombination der Prädiktoren wird das Modell erneut ausgeführt, und aus diesen finalen Ergebnissen wird im nächsten Kapitel eine Schlussfolgerung gezogen. \\\\
+\subsection{Schlussfolgerungen und Implikationen}
+\label{schlussfolgerungenUndImplikationen}
+In den Modellergebnissen wird festgestellt, dass die saisonalen Variablen \verb|is_autumn|, \verb|is_summer| und \verb|is_weekend| einen erheblichen sechstelligen Nachfrageeffekt aufweisen. 
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{images/finalmodel.png}
+    \includegraphics[width=1\linewidth]{images/finalols.png}
     \caption{Finales Modellergebnis}
     \label{fig:finalmodell}
 \end{figure}

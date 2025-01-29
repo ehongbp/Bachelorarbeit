@@ -11,8 +11,9 @@
 
 \ProcessOptions
 
-\LoadClass[a4paper,oneside,13pt, bibliography=totocnumbered]{scrartcl}
+\LoadClass[a4paper,oneside,fontsize=13pt,bibliography=totocnumbered]{scrartcl}
 %times in 12 pt
+\RequirePackage{times}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 %Zeilenabstrand 1.25
