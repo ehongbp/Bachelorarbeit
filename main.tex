@@ -1,13 +1,5 @@
  \documentclass{common/nak}
 
-%Deckblattkonfiguration
-%Die Werte in den Klammern können entsprechend angepasst werden
-\def\transferLeistungnnummer{69}
-\def\matrikelNummer{42069}
-\def\themenBeschreibung{Irgendein langweiliger shit der nichts mit Informatik zutun hat}
-\def\studienGang{Angewandte Informatik}
-\def\zenturie{A18a}
-
 %General stuff
 \usepackage{acronym}
 \graphicspath{{images/}}
@@ -89,7 +81,7 @@ Unterschrift:
 \newpage
 \section*{Sperrvermerk}
 
-Die vorliegende Transferleistung beinhaltet interne vertrauliche Informationen der bonprix Handelsgesellschaft mbH. Die Weitergabe des Inhaltes der Arbeit und eventuell beiliegender Zeichnungen und Daten im Gesamten oder in Teilen ist grundsätzlich untersagt. Es dürfen keinerlei Kopien oder Abschriften - auch in digitaler Form - gefertigt werden. Ausnahmen bedürfen der schriftlichen Genehmigung der bonprix Handelsgesellschaft mbH.
+Die vorliegende Bachelorarbeit beinhaltet interne vertrauliche Informationen der bonprix Handelsgesellschaft mbH. Die Weitergabe des Inhaltes der Arbeit und eventuell beiliegender Zeichnungen und Daten im Gesamten oder in Teilen ist grundsätzlich untersagt. Es dürfen keinerlei Kopien oder Abschriften - auch in digitaler Form - gefertigt werden. Ausnahmen bedürfen der schriftlichen Genehmigung der bonprix Handelsgesellschaft mbH.
 
 \newpage
 
@@ -144,7 +136,7 @@ Die vorliegende Transferleistung beinhaltet interne vertrauliche Informationen d
 \subsection*{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
 \label{Anhang1:ZeitlicherVerlaufMitPywidgets}
 \UseRawInputEncoding
-\begin{lstlisting}
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
     def plot_data(x_axis, y_axis):
     start_date_1 = y_axis.strftime("%Y-%m-%d")
     df_raw['date'] = pd.to_datetime(df_raw['date'])
@@ -191,7 +183,7 @@ interact(plot_data, x_axis=x_axis_dropdown, y_axis=y_axis_dropdown)
 \newpage
 \subsection*{Anhang 2: Kreisdiagramm Aufteilung der Mediaausgaben}
 \label{Anhang2KreisdiagrammAufteilungDerMediaausgaben}
-\begin{lstlisting}
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
 start_date_1 = "2022-01-01"
 end_date_1 = "2024-11-30"
 start_date_1 = pd.to_datetime(start_date_1)
