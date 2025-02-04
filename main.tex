@@ -84,7 +84,10 @@ Unterschrift:
 Die vorliegende Bachelorarbeit beinhaltet interne vertrauliche Informationen der bonprix Handelsgesellschaft mbH. Die Weitergabe des Inhaltes der Arbeit und eventuell beiliegender Zeichnungen und Daten im Gesamten oder in Teilen ist grundsätzlich untersagt. Es dürfen keinerlei Kopien oder Abschriften - auch in digitaler Form - gefertigt werden. Ausnahmen bedürfen der schriftlichen Genehmigung der bonprix Handelsgesellschaft mbH.
 
 \newpage
+\section*{Hinweis zur Lesbarkeit}
+Aus Gründen der besseren Lesbarkeit wird nach Möglichkeit das substantivierte Partizip Präsens als geschlechtsneutrale Ausdrucksform genutzt. Sollte dies nicht möglich sein, wird eine Bezeichnung gewählt, die alle Geschlechtsidentitäten einschließt. Englischsprachige Fachbegriffe werden verwendet, sofern es keine gängige deutschsprachige Übersetzung gibt.
 
+\newpage
 %Inhaltsverzeichnis
 \tableofcontents
 \newpage
@@ -124,8 +127,13 @@ Die vorliegende Bachelorarbeit beinhaltet interne vertrauliche Informationen der
 
 %Quellen
 \newpage
+\setcounter{page}{1}
+\pagenumbering{Roman}
 \clearpage
-\printbibliography
+
+\section*{Literaturverzeichnis}
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\printbibliography[heading=none]
 
 \newpage
 %Anhang
@@ -133,7 +141,9 @@ Die vorliegende Bachelorarbeit beinhaltet interne vertrauliche Informationen der
 \section*{Anhang}
 \label{anhang}
 \addcontentsline{toc}{section}{Anhang}
+
 \subsection*{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
+\addcontentsline{toc}{subsection}{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
 \label{Anhang1:ZeitlicherVerlaufMitPywidgets}
 \UseRawInputEncoding
 \begin{lstlisting}[language=Python, linewidth=\textwidth]
@@ -182,6 +192,7 @@ interact(plot_data, x_axis=x_axis_dropdown, y_axis=y_axis_dropdown)
 \end{lstlisting}
 \newpage
 \subsection*{Anhang 2: Kreisdiagramm Aufteilung der Mediaausgaben}
+\addcontentsline{toc}{subsection}{Anhang 2: Kreisdiagramm Aufteilung der Mediaausgaben}
 \label{Anhang2KreisdiagrammAufteilungDerMediaausgaben}
 \begin{lstlisting}[language=Python, linewidth=\textwidth]
 start_date_1 = "2022-01-01"
@@ -227,5 +238,56 @@ x_axis_dropdown = widgets.DatePicker(
 interact(plot_data, x_axis=x_axis_dropdown)
 \end{lstlisting}
 
+\subsection*{Anhang: Kreisdiagramm Aufteilung der Nachfrageeffekte innerhalb der Media-Kanäle}
+\addcontentsline{toc}{subsection}{Kreisdiagramm Aufteilung der Nachfrageeffekte innerhalb der Media-Kanäle}
+\label{AufteilungDerNachfrageeffekt}
+\begin{lstlisting}[language=Python, linewidth=\textwidth]
+media_columns = [
+    "digital_video_display_costs", 
+    "dooh_ooh_costs", 
+    "tv_sum_costs",
+    "radio_costs"
+]
+
+regression_results = {
+    "reg_daily": reg_daily,
+    "reg_2days": reg_2days,
+    "reg_4days": reg_4days,
+    "reg_8days": reg_8days,
+    "reg_16days": reg_16days,
+    "reg_32days": reg_32days,
+    "reg_64days": reg_64days
+}
+
+def update_pie_chart(selected_reg):
+    reg_result = regression_results[selected_reg]
+    
+    reg_df = pd.DataFrame({
+        'Parameter': reg_result.params,
+        'P-Wert': reg_result.pvalues,
+        'Konf_Intervall_Untere': reg_result.conf_int()[0],
+        'Konf_Intervall_Obere': reg_result.conf_int()[1]
+    })
+    
+    reg_media_df = reg_df[reg_df.index.isin(media_columns)].copy()
+    
+    reg_media_df['Parameter'] = reg_media_df['Parameter'].clip(lower=0)
+    
+    plt.figure(figsize=(8, 8))
+    plt.pie(reg_media_df['Parameter'], labels=reg_media_df.index, autopct='%1.1f%%', startangle=140)
+    plt.title(f'Verteilung der geschätzten Nachfrageeffekte innerhalb von Media-Kanäle in {selected_reg} ')
+    plt.axis('equal') 
+    plt.show()
+
+dropdown = widgets.Dropdown(
+    options=regression_results.keys(),
+    value="reg_64days",  
+    description="Regression:"
+)
+
+interact(update_pie_chart, selected_reg=dropdown)
+\end{lstlisting}
+
 \newpage
 \end{document}
+

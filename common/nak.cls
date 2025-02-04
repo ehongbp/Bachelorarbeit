@@ -19,6 +19,8 @@
 %Zeilenabstrand 1.25
 \RequirePackage{setspace}
 \setstretch{1.25}
+\setlength{\parskip}{8pt}  
+\setlength{\parindent}{0pt}
 %Seitenabstand
 \RequirePackage[margin=2cm, includefoot, heightrounded]{geometry}
 \RequirePackage{microtype}
