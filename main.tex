@@ -1,4 +1,4 @@
- \documentclass{common/nak}
+\documentclass{common/nak}
 
 %General stuff
 \usepackage{acronym}
@@ -11,8 +11,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{booktabs}
-
-
+\newcommand{\codevar}[1]{\lstinline[breaklines=true]|#1|}
 \lstset{ 
     language=Python,
     basicstyle=\ttfamily\footnotesize,
@@ -85,7 +84,7 @@ Die vorliegende Bachelorarbeit beinhaltet interne vertrauliche Informationen der
 
 \newpage
 \section*{Hinweis zur Lesbarkeit}
-Aus Gründen der besseren Lesbarkeit wird nach Möglichkeit das substantivierte Partizip Präsens als geschlechtsneutrale Ausdrucksform genutzt. Sollte dies nicht möglich sein, wird eine Bezeichnung gewählt, die alle Geschlechtsidentitäten einschließt. Englischsprachige Fachbegriffe werden verwendet, sofern es keine gängige deutschsprachige Übersetzung gibt.
+Zur besseren Lesbarkeit wird in dieser Arbeit die männliche Form verwendet, die alle Geschlechtsidentitäten einschließt. Englische Fachbegriffe werden verwendet, sofern keine etablierte deutsche Übersetzung existiert.
 
 \newpage
 %Inhaltsverzeichnis
@@ -141,7 +140,6 @@ Aus Gründen der besseren Lesbarkeit wird nach Möglichkeit das substantivierte 
 \section*{Anhang}
 \label{anhang}
 \addcontentsline{toc}{section}{Anhang}
-
 \subsection*{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
 \addcontentsline{toc}{subsection}{Anhang 1: Zeitlicher Verlauf Nachfrage und Mediaausgabe}
 \label{Anhang1:ZeitlicherVerlaufMitPywidgets}
@@ -287,7 +285,12 @@ dropdown = widgets.Dropdown(
 
 interact(update_pie_chart, selected_reg=dropdown)
 \end{lstlisting}
-
+\subsection*{Marketing-Mix-Modell Grundlagen von bonprix}
+\addcontentsline{toc}{subsection}{Marketing-Mix-Modell Grundlagen von bonprix}
+\label{Marketing-Mix-ModellGrundlagenVonBonprix}
+\centering
+% MBM-Marketing Mix Modeling-050225-152344.pdf
+\includepdf[pages=1-2]{images/MBM-Marketing Mix Modeling-050225-152344.pdf}
 \newpage
 \end{document}
 
